@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://azrielchoerulhakim.github.io/lazarus_faridh-fikri-portofolio/sitemap.xml

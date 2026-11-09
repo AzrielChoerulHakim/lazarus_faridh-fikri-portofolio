@@ -32,6 +32,10 @@ python3 scripts/validate.py
 
 ## Deploy
 
-Website dapat di-deploy dari root repository (output directory `.`). Untuk GitHub Pages: `Settings → Pages → Deploy from a branch → main / (root)`.
+Website terbit otomatis melalui GitHub Actions setiap commit ke `main`:
+
+**https://azrielchoerulhakim.github.io/lazarus_faridh-fikri-portofolio/**
+
+Workflow memvalidasi JavaScript, tautan, dan aset lokal, membangun keluaran statis, mengirimkannya ke GitHub Pages, lalu memeriksa URL publik dan aset penting.
 
 Konten fakta diperoleh dari CV dan dokumen pendukung milik Faridh Fikri, tanpa testimonial, proyek, atau hasil terukur yang dikarang.

@@ -1,41 +1,34 @@
-# Faridh Fikri — Legal & People Operations
+# Faridh Fikri — The Threshold
 
-Portfolio pribadi Faridh Fikri, dikembangkan oleh Lazarus Dev dengan pendekatan editorial yang menonjolkan pengalaman Corporate Legal, HRGA, administrasi, dan relasi bisnis.
+A surrealist editorial portfolio by Lazarus Dev, grounded in the original verified CV and two supplied personal photographs. Built with static HTML, CSS and vanilla JavaScript for immediate GitHub Pages / Vercel deployment.
 
-## Teknologi
+## Concept
 
-Website statis HTML, CSS, dan JavaScript tanpa framework atau dependency runtime. Cocok untuk GitHub Pages, Cloudflare Pages, Netlify, ataupun Vercel. Aset foto bersumber dari dokumentasi pribadi yang diberikan secara langsung; foto dioptimasi menjadi WebP tanpa membuat gambar sintetis.
+**Di antara aturan, selalu ada manusia.** A fragmented architectural gateway, moonlit stone, hovering steps, deep-night palette and intimate editorial copy connect Faridh's law background with corporate legal, HRGA and business relations. Surreal illustration is explicitly symbolic, not evidence of work achievements.
 
-## Menjalankan
+## Voice
 
-```bash
+**Professional Conversational (Bahasa Indonesia).** Natural first-person editorial copy about genuine CV details; not attributed as a verbatim personal quote. Formal qualifications, employers and dates remain intact.
+
+## Features
+
+- Original hand-coded impossible architecture SVG, no third-party illustration assets.
+- Genuine supplied portrait and candid images (`assets/images/*.webp`).
+- Interactive career reader: Starlead, Coil Disco, South Jakarta Religious Court and BNN Tangerang.
+- Real academic and certification timeline, original download-ready CV.
+- Accessible responsive mobile menu, keyboard actions, reduced motion preference and semantic markup.
+- GitHub Pages build workflow with local references validated before publishing.
+
+## Develop
+
+```sh
 python3 -m http.server 4173
-```
-
-Buka `http://localhost:4173`.
-
-## Validasi
-
-```bash
 node --check assets/main.js
 python3 scripts/validate.py
 ```
 
-## Struktur
+## Publish
 
-- `index.html` — konten dan metadata SEO
-- `assets/style.css` — sistem visual dan responsive layout
-- `assets/main.js` — navigasi, transisi, progress baca
-- `assets/images/` — dua foto personal asli yang dioptimasi ke WebP
-- `assets/docs/Faridh-Fikri-CV.pdf` — CV sumber
-- `scripts/validate.py` — pemeriksaan aset dan tautan lokal
+Push to `main` on `AzrielChoerulHakim/lazarus_faridh-fikri-portofolio` for automated GitHub Pages deployment, or import this repository into Vercel (static preset, no build command; output directory root).
 
-## Deploy
-
-Website terbit otomatis melalui GitHub Actions setiap commit ke `main`:
-
-**https://azrielchoerulhakim.github.io/lazarus_faridh-fikri-portofolio/**
-
-Workflow memvalidasi JavaScript, tautan, dan aset lokal, membangun keluaran statis, mengirimkannya ke GitHub Pages, lalu memeriksa URL publik dan aset penting.
-
-Konten fakta diperoleh dari CV dan dokumen pendukung milik Faridh Fikri, tanpa testimonial, proyek, atau hasil terukur yang dikarang.
+The photography and PDF are carried over untouched from the preceding Faridh portfolio. Redistribution and public use require the subject's permission. This project does not imply legal advice or independent professional representation.

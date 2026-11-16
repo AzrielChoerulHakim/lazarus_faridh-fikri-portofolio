@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1120" role="img" aria-label="Arsitektur surealis: gerbang batu terfragmentasi, bulan, dan tangga yang mengambang">
+  <defs>
+    <linearGradient id="marble" x1="0" y1="0" x2="1" y2=".9"><stop offset="0" stop-color="#fcf1d3"/><stop offset=".22" stop-color="#c2b7a3"/><stop offset=".45" stop-color="#e7d7bd"/><stop offset=".7" stop-color="#887b75"/><stop offset="1" stop-color="#f5dfb8"/></linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7d7680"/><stop offset=".56" stop-color="#323e58"/><stop offset="1" stop-color="#756668"/></linearGradient>
+    <linearGradient id="stoneRed" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e0ac88"/><stop offset=".48" stop-color="#a66c57"/><stop offset="1" stop-color="#4a3846"/></linearGradient>
+    <linearGradient id="stairs" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#efe3cb"/><stop offset="1" stop-color="#978d8a"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#fff5d7"/><stop offset=".38" stop-color="#ead5b7"/><stop offset=".8" stop-color="#b5a6a0"/><stop offset="1" stop-color="#90869b"/></radialGradient>
+    <radialGradient id="fog"><stop stop-color="#c6aec2" stop-opacity=".7"/><stop offset="1" stop-color="#b2a3bd" stop-opacity="0"/></radialGradient>
+    <filter id="grit" x="-25%" y="-25%" width="150%" height="150%"><feTurbulence baseFrequency=".023 .06" numOctaves="3" seed="12" type="fractalNoise" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="gray"/><feBlend in="SourceGraphic" in2="gray" mode="soft-light"/></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="180%" height="180%"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <clipPath id="archCut"><path d="M222 782V340C222 166 348 95 472 95S718 166 718 340V782Z"/></clipPath>
+    <pattern id="veins" width="170" height="190" patternUnits="userSpaceOnUse"><path d="M2 160Q48 95 72 98T151 2M0 178Q72 108 96 147T168 68" stroke="#68535a" stroke-opacity=".21" stroke-width="1.2" fill="none"/><path d="M7 174Q40 113 105 105T160 19" stroke="#fff7e5" stroke-opacity=".14" stroke-width="2" fill="none"/></pattern>
+  </defs>
+  <!-- the luminous impossible sky behind the ruins -->
+  <ellipse cx="470" cy="543" rx="366" ry="520" fill="url(#fog)" opacity=".48"/>
+  <g opacity=".9"><circle cx="532" cy="279" r="148" fill="#f8dfba" opacity=".07"/><circle cx="532" cy="279" r="112" fill="url(#moon)"/><circle cx="502" cy="237" r="37" fill="#a59894" opacity=".12"/><circle cx="575" cy="324" r="24" fill="#a59894" opacity=".13"/><circle cx="574" cy="233" r="13" fill="#8c868d" opacity=".1"/></g>
+  <!-- rear monolithic shards -->
+  <g >
+    <path d="M98 832L160 480L201 440L187 826Z" fill="url(#side)"/>
+    <path d="M160 480L221 518L205 876L187 826Z" fill="#666a73"/>
+    <path d="M98 832L160 480L221 518L150 900Z" fill="url(#stoneRed)" opacity=".85"/>
+    <path d="M757 792L786 302L830 335L815 850Z" fill="url(#side)"/>
+    <path d="M786 302L854 364L850 830L815 850Z" fill="#958c85"/>
+  </g>
+  <!-- shadow of the hero architecture -->
+  <path d="M140 880L445 1018L767 860" stroke="#080f24" stroke-width="68" stroke-linecap="round" opacity=".5" filter="url(#shadow)" fill="none"/>
+  <!-- sculptural portal depth, its interior intentionally impossible -->
+  <path d="M190 815V359C190 151 307 59 470 59S750 151 750 359V815" fill="none" stroke="#343e54" stroke-width="85" opacity=".78"/>
+  <path d="M176 805V351C176 144 304 55 470 55S764 144 764 351V805" fill="none" stroke="url(#side)" stroke-width="75"/>
+  <path d="M149 802V358C149 150 292 68 471 68S784 150 784 358V802" fill="none" stroke="url(#marble)" stroke-width="77" />
+  <path d="M149 802V358C149 150 292 68 471 68S784 150 784 358V802" fill="none" stroke="url(#veins)" stroke-width="75" opacity=".66"/>
+  <path d="M182 801V358C182 171 318 102 471 102S749 171 749 358V801" fill="none" stroke="#fff8de" stroke-width="4" opacity=".36"/>
+  <!-- broken right wall turns liquid, stepping into nowhere -->
+  <g >
+    <path d="M751 477Q787 488 794 533Q785 561 806 586Q838 618 818 646Q802 659 812 680Q838 724 818 766L788 807L758 769Z" fill="url(#marble)"/>
+    <path d="M770 520Q754 562 783 597Q792 614 779 645Q762 673 787 714" fill="none" stroke="#6d6470" stroke-width="3" opacity=".5"/>
+    <path d="M775 745Q809 799 795 833Q780 872 810 885Q835 892 834 923" fill="none" stroke="#d0a892" stroke-width="13" stroke-linecap="round"/>
+    <path d="M775 745Q809 799 795 833Q780 872 810 885Q835 892 834 923" fill="none" stroke="#fff0d6" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  </g>
+  <!-- impossible diagonal stairway, free floating in the void -->
+  <g >
+    <path d="M76 904L423 745L702 818L333 984Z" fill="#34384c" opacity=".52" filter="url(#smallShadow)"/>
+    <path d="M100 871L352 759L479 802L225 920Z" fill="url(#stairs)"/>
+    <path d="M225 920L479 802L479 840L225 961Z" fill="url(#side)"/>
+    <path d="M100 871L225 920L225 961L100 910Z" fill="#9b7771"/>
+    <path d="M133 844L370 738L487 777L243 890Z" fill="url(#stairs)"/>
+    <path d="M243 890L487 777L487 812L243 928Z" fill="#5c5660"/>
+    <path d="M133 844L243 890L243 928L133 884Z" fill="#a58f85"/>
+    <path d="M162 820L391 715L498 746L262 858Z" fill="#dfceba"/>
+    <path d="M262 858L498 746L498 776L262 889Z" fill="#686071"/>
+    <path d="M162 820L262 858L262 889L162 853Z" fill="#b6a499"/>
+    <path d="M187 798L408 691L509 717L285 829Z" fill="#f1dcc1"/>
+    <path d="M285 829L509 717L509 745L285 860Z" fill="#645d70"/>
+    <path d="M187 798L285 829L285 860L187 830Z" fill="#ad9285"/>
+    <path d="M219 773L435 670L519 693L303 799Z" fill="#d5c7b8"/>
+    <path d="M303 799L519 693L519 719L303 827Z" fill="#484963"/>
+    <path d="M219 773L303 799L303 827L219 804Z" fill="#b39888"/>
+  </g>
+  <!-- a copper plane appears to pierce the portal -->
+  <path d="M453 635L726 581L827 637L558 699Z" fill="url(#stoneRed)" opacity=".8"/>
+  <path d="M558 699L827 637L825 650L562 717Z" fill="#61454d" opacity=".86"/>
+  <!-- an impossible upper keystone detached from the arch -->
+  <g transform="translate(432 80) rotate(-17)"><path d="M0 0L87 -21L130 43L36 71Z" fill="url(#marble)" stroke="#dbbea3" stroke-width="2"/><path d="M36 71L130 43L111 72L22 94Z" fill="url(#side)"/><path d="M0 0L36 71L22 94L-17 21Z" fill="#9b8a82"/><path d="M13 20Q47 29 78 3" stroke="#8b7b76" opacity=".6" fill="none"/></g>
+  <!-- orbiting fragments: objects free from the laws of structure -->
+  <g transform="translate(100 302) rotate(18)"><path d="M0 0L74 -13L89 22L11 38Z" fill="#f4dfc4"/><path d="M11 38L89 22L86 50L9 69Z" fill="#777382"/><path d="M0 0L11 38L9 69L-6 31Z" fill="#ad8c87"/></g>
+  <g transform="translate(770 140) rotate(-15)"><path d="M0 0L36 15L26 49L-8 31Z" fill="url(#stoneRed)"/><path d="M26 49L36 15L48 29L36 66Z" fill="#594459"/></g>
+  <g transform="translate(725 877) rotate(25)"><path d="M0 0L69 -3L77 32L6 45Z" fill="#e9d8be"/><path d="M6 45L77 32L69 52L7 63Z" fill="#59566b"/></g>
+  <g transform="translate(253 105) rotate(-12)"><path d="M0 0L26 -12L49 6L21 20Z" fill="#e9d7b9"/><path d="M21 20L49 6L45 30L20 45Z" fill="#706576"/></g>
+  <!-- hollow eclipse rings and measured points -->
+  <ellipse cx="474" cy="510" rx="312" ry="475" stroke="#f7d3ab" stroke-opacity=".23" stroke-width="1" stroke-dasharray="3 10" fill="none" transform="rotate(16 474 510)"/>
+  <path d="M719 111L750 111M734 96L734 126M102 500L136 500M119 483L119 518" stroke="#f6ccad" stroke-width="1" opacity=".66"/>
+  <g fill="#f6dfc4" opacity=".76"><circle cx="104" cy="161" r="2"/><circle cx="172" cy="220" r="1.6"/><circle cx="809" cy="264" r="2"/><circle cx="824" cy="724" r="1.3"/><circle cx="190" cy="645" r="1.2"/><circle cx="695" cy="926" r="2"/><circle cx="315" cy="453" r="1"/><circle cx="580" cy="840" r="1"/></g>
+</svg>

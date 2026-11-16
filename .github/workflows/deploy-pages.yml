@@ -1,19 +1,15 @@
 name: Validate and publish portfolio
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: github-pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,8 +17,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Validate JavaScript
         run: node --check assets/main.js
       - name: Validate website files
@@ -33,10 +28,8 @@ jobs:
           cp index.html robots.txt sitemap.xml dist/
           cp -R assets dist/
           touch dist/.nojekyll
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
       - name: Deploy site
@@ -47,25 +40,14 @@ jobs:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           set -euo pipefail
-          ok=0
-          for attempt in $(seq 1 15); do
-            if curl --fail --silent --show-error --location --max-time 15 "${SITE_URL}" --output /tmp/faridh.html && grep -q 'Presisi dalam' /tmp/faridh.html; then
-              ok=1
+          for attempt in $(seq 1 12); do
+            if curl --fail --silent --show-error --location --max-time 15 "${SITE_URL}" --output /tmp/faridh.html && grep -q 'Di antara' /tmp/faridh.html; then
               break
             fi
+            if [ "$attempt" -eq 12 ]; then echo "Deployment content unavailable"; exit 1; fi
             sleep 5
           done
-          if [ "$ok" -ne 1 ]; then echo 'Published page could not be verified'; exit 1; fi
-          for path in assets/style.css assets/main.js assets/images/faridh-portrait.webp assets/images/faridh-moment.webp assets/docs/Faridh-Fikri-CV.pdf robots.txt sitemap.xml; do
-            found=0
-            for attempt in $(seq 1 15); do
-              if curl --fail --silent --location --max-time 15 "${SITE_URL}${path}" --output /dev/null; then
-                found=1
-                break
-              fi
-              sleep 5
-            done
-            if [ "$found" -ne 1 ]; then echo "Asset unavailable: ${path}"; exit 1; fi
-            echo "Verified asset: ${path}"
+          for file in assets/style.css assets/main.js assets/threshold-world.svg assets/images/faridh-portrait.webp assets/images/faridh-moment.webp assets/docs/Faridh-Fikri-CV.pdf; do
+            curl --fail --silent --show-error --location --max-time 20 "${SITE_URL}${file}" -o /dev/null
           done
-          echo "Verified live page and 7 assets at ${SITE_URL}"
+          echo 'Live portfolio and original assets verified.'

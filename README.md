@@ -11,8 +11,8 @@ Serve `index.html` from the repository root with GitHub Pages, or import this re
 - Verified facts: new Faridh Fikri CV supplied for this project.
 - Portrait: photo supplied by the client; not an invented identity or achievement.
 - Background: original generated surreal illustration. It is not evidence of real work, an employer, or a real location.
-- Two bundled self-hosted Cabin font faces: copyright Pablo Impallari, licensed under SIL Open Font License 1.1, embedded as optimized WOFF2 data URLs.
-- No third-party JavaScript, SVG ornaments, stock imagery, trackers, or external runtime asset requests.
+- Typography uses Cabin from the Google Fonts CDN with readable system fallbacks; no font binaries are distributed.
+- No third-party JavaScript, SVG ornaments, stock imagery, or trackers. Only the optional Google Fonts CSS loads externally.
 
 ## Voice
 

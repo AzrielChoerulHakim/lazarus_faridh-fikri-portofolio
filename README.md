@@ -1,23 +1,20 @@
-# Faridh Fikri — Surreal Editorial Portfolio (v2)
+# Faridh Fikri — Surreal Editorial Portfolio
 
-A complete static portfolio rebuilt around one cohesive surreal architectural background, the client's authentic portrait, and verified CV facts. No framework or build step.
+A self-contained static portfolio grounded in the supplied Faridh Fikri CV and portrait. Designed with one coherent surreal architectural background, not layered ornamental SVGs.
 
-## Deploy
+## Run and publish
 
-Serve `index.html` from the repository root with GitHub Pages, or import this repository to Vercel as a static site. The existing Pages deployment workflow is included.
+Open `index.html` in a browser. For GitHub Pages, publish the `main` branch using the included `.github/workflows/pages.yml` workflow. For Vercel, import as a plain static website with no build command.
 
-## Assets and rights
+## Creative and interaction notes
 
-- Verified facts: new Faridh Fikri CV supplied for this project.
-- Portrait: photo supplied by the client; not an invented identity or achievement.
-- Background: original generated surreal illustration. It is not evidence of real work, an employer, or a real location.
-- Typography uses Cabin from the Google Fonts CDN with readable system fallbacks; no font binaries are distributed.
-- No third-party JavaScript, SVG ornaments, stock imagery, or trackers. Only the optional Google Fonts CSS loads externally.
+- The original surreal background and authentic client portrait are embedded directly in `index.html` as optimized images.
+- Editorial Indonesian copy is a casual-friendly creative proposal, not an attributed quotation by Faridh. All biographical details must stay aligned with the supplied CV.
+- No decorative SVGs or redundant arrow glyphs. Accordion expand/collapse indicators remain because they signal a real interaction.
+- Camera-depth movement follows scroll on desktop. The backdrop also has a subdued ambient daylight effect. Navigation state, portrait entrance and experience disclosures use purposeful transitions.
+- On mobile and short-height viewports the background remains stable; `prefers-reduced-motion` disables ambient and scroll-driven effects while retaining all content and functionality.
+- Typography uses Cabin from Google Fonts with system fallbacks. No font binaries, third-party JS, analytics or backend are bundled.
 
-## Voice
+## Verification
 
-Conversational/slang Indonesian copy is an editorial proposal, not a direct quote from Faridh. All professional details are grounded in the CV.
-
-## Checks
-
-Locally reviewed rendered sections at 320px and 390px, plus 640, 768, 1024, 1440 and short landscape viewport. No horizontal overflow or broken images were observed. Mobile navigation, accordion and reduced-motion state were checked.
+Reviewed screenshot renders at 320, 390, 640, 768, 1024 and 1440 CSS pixels plus 832×384 short landscape; observed no horizontal overflow, broken embedded images, redundant arrow characters or runtime JavaScript errors. Checked mobile navigation, disclosure toggling, internal section anchors and reduced-motion fallback. Desktop scene variables were verified to change with scrolling. This is not a claim of complete WCAG certification or cross-browser compatibility testing.

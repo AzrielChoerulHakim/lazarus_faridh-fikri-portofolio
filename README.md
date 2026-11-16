@@ -1,20 +1,23 @@
-# Faridh Fikri — Surrealist Editorial Portfolio
+# Faridh Fikri — Surreal Editorial Portfolio (v2)
 
-Standalone, responsive single-file portfolio created from the new Faridh Fikri CV and supplied authentic portrait. No framework or build command required.
+A complete static portfolio rebuilt around one cohesive surreal architectural background, the client's authentic portrait, and verified CV facts. No framework or build step.
 
 ## Deploy
 
-Publish the repository root with GitHub Pages (branch `main`, root), or import it into Vercel with the static preset and no build command.
+Serve `index.html` from the repository root with GitHub Pages, or import this repository to Vercel as a static site. The existing Pages deployment workflow is included.
 
-## Source and rights
+## Assets and rights
 
-- Identity, dates, roles, skill descriptions, and contacts are drawn from the new supplied CV.
-- The embedded image is an optimized crop of the newly supplied `foto diri.jpg`, retaining its real subject.
-- The architectural portal, moon, floating page and seal are original CSS illustrations, not representations of professional achievements.
-- Public copy is a third-person editorial proposal in casual-friendly Indonesian, not a quote attributed to Faridh.
-- No diploma, certificate, or other personal scans are republished.
-- No dependencies, external font downloads, or backend.
+- Verified facts: new Faridh Fikri CV supplied for this project.
+- Portrait: photo supplied by the client; not an invented identity or achievement.
+- Background: original generated surreal illustration. It is not evidence of real work, an employer, or a real location.
+- Two bundled self-hosted Cabin font faces: copyright Pablo Impallari, licensed under SIL Open Font License 1.1, embedded as optimized WOFF2 data URLs.
+- No third-party JavaScript, SVG ornaments, stock imagery, trackers, or external runtime asset requests.
 
-## Accessibility and QA
+## Voice
 
-Use semantic anchors, keyboard-focused controls, native disclosure panels, a functional mobile navigation and `prefers-reduced-motion` fallback. Rendered locally at 320, 390, 640, 768, 1024 and 1440 CSS px; local browser checks observed no horizontal overflow.
+Conversational/slang Indonesian copy is an editorial proposal, not a direct quote from Faridh. All professional details are grounded in the CV.
+
+## Checks
+
+Locally reviewed rendered sections at 320px and 390px, plus 640, 768, 1024, 1440 and short landscape viewport. No horizontal overflow or broken images were observed. Mobile navigation, accordion and reduced-motion state were checked.

@@ -34,6 +34,8 @@ try{
   const identity=await page.locator('#cover-title').innerText();
   assert.match(identity,/Faridh\s*Fikri/);
   assert.equal(await page.locator('.cover-image img').count(),1);
+  assert.equal(await page.locator('.work-world-painting img').count(),1);
+  assert.equal(await page.locator('.horizon-transition img').count(),1);
   assert.equal(await page.locator('figcaption').count(),0);
   const ornaments=await page.locator('body').innerText();
   assert.doesNotMatch(ornaments,/PLATE Nº|ARSITEKTUR YANG MENCAIR|SCULPTURAL IMPASTO|ILUSTRASI METAFORIS/);
@@ -42,8 +44,8 @@ try{
   assert.ok(headingRect.x>=-1&&headingRect.x+headingRect.width<=width+2,'hero typography runs offscreen at '+width+': '+JSON.stringify(headingRect));
   assert.ok(dimensions.html<=width+2,'horizontal overflow '+width+': '+JSON.stringify(dimensions));
   const arts=page.locator('figure img');
-  assert.equal(await arts.count(),2);
-  for(let i=0;i<2;i++){
+  assert.equal(await arts.count(),4);
+  for(let i=0;i<4;i++){
    const image=arts.nth(i);
    await image.scrollIntoViewIfNeeded();
    await image.evaluate(async img=>{await img.decode()});
@@ -57,13 +59,29 @@ try{
    if(width===1440)report.paintings.push(imgData);
    if(width===1440&&imgData.source==='assets/impasto-dissolution.webp')assert.ok(imgData.displayWidth>=1200,'hero painting is still a small side-card');
   }
-  const experience=page.locator('.work-item');
+  const experience=page.locator('.work-page');
   assert.equal(await experience.count(),4);
-  assert.equal(await experience.first().getAttribute('open'),'');
-  await experience.nth(1).locator('summary').click();
-  assert.ok(await experience.nth(1).evaluate(el=>el.open),'experience could not expand');
-  await experience.nth(1).locator('summary').click();
-  assert.ok(!(await experience.nth(1).evaluate(el=>el.open)),'experience could not close');
+  const completeContent=await experience.allInnerTexts();
+  assert.ok(completeContent.some(t=>t.includes('SKHPN')),'last CV item must remain readable');
+  const workScene=page.locator('.work-world');
+  await workScene.scrollIntoViewIfNeeded();
+  if(width>720){
+    const sticky=await workScene.evaluate(el=>getComputedStyle(el).position);
+    assert.equal(sticky,'sticky','desktop painting must remain with scrolling evidence');
+    await experience.last().scrollIntoViewIfNeeded();
+    const current=await page.locator('#work-count').innerText();
+    assert.equal(current,'4 dari 4','scroll-linked experience index not updated');
+  }else{
+    const track=page.locator('#work-pages');
+    assert.equal(await track.evaluate(el=>getComputedStyle(el).scrollSnapType),'x mandatory');
+    const nextButton=page.locator('#work-next');
+    await nextButton.scrollIntoViewIfNeeded();
+    await nextButton.click();
+    await page.waitForFunction(()=>document.getElementById('work-mobile-count').textContent==='2 dari 4');
+    assert.equal(await page.locator('#work-mobile-count').innerText(),'2 dari 4');
+    await page.locator('#work-prev').click();
+    await page.waitForFunction(()=>document.getElementById('work-mobile-count').textContent==='1 dari 4');
+  }
   if(width<=720){
    const menu=page.locator('.menu-button');
    assert.ok(await menu.isVisible());
@@ -91,4 +109,4 @@ try{
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  await browser.close();server.close();
 }
-console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 2 local images; mobile navigation; interactive experience list.');
+console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 4 local images; mobile navigation; interactive experience list.');

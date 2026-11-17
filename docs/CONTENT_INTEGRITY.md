@@ -47,12 +47,14 @@ References (research branch) from Lazarus Design OS:
 - RESPONSIVE_MAPPING.md / VISUAL_QA.md
 
 Chosen composition is **evidence-first editorial passage**:
-1. Direct truthful identity; independent complete oil painting.
-2. Authentic portrait and background.
-3. Four verified experience dossiers with native HTML disclosure.
-4. One stand-alone illustration of material/process transformation.
-5. Skills as readable text, not decorative imagery.
-6. Education, GPA and four trainings.
-7. Direct email and WhatsApp actions, closing painterly horizon.
+1. Verified identity and one complete full-width impasto painting.
+2. Authentic portrait and unchanged personal facts.
+3. Four fully visible CV-grounded work records in a scroll-following painting archive (desktop) or native horizontal swipe chapters (mobile). No hidden or invented accomplishments.
+4. One unlayered complete painting accompanies the records; the work progress text indicates the actual active record and is functional.
+5. Skills as readable text-only entries, followed by degree, GPA and four trainings.
+6. One separate complete impossible-horizon painting marks the transition to plain email and WhatsApp contact links, with no redundant curatorial caption.
 
 The rendered website contains **no artistic SVG, no CSS image stacking, and no 3D parallax**. The original three **1536×1024 raster paintings have now been committed directly into this Faridh GitHub branch** (optimized WebP, each with verified Git blob checksum). They replace the previously imported 200×133 research thumbnails. Final human aesthetic approval and cross-browser/200% text QA remain separate steps, not assertions of automatic visual perfection.
+## 2026-11-17 — Scroll-driven refinement
+
+The CV, dates, roles, organization names, skill names, qualifications, phone and email are unchanged. The former click-to-open work dossiers are now four visible, semantically separate entries so no CV evidence is hidden by a closed accordion. Desktop has a sticky **single-image** impasto artwork alongside the entries; the text counter updates as the user scrolls. Mobile uses native horizontal scroll snapping and functional **Sebelumnya / Berikutnya** text buttons, not decorative arrows; without JavaScript, the native swipe track remains scrollable. No scroll hijacking, separate sky/cutout layers, fabricated light or SVG artwork is used. The contact transition is an intact separate image, not a montage. Because images are illustrative, not achievements, they are not labelled as actual client work in copy; their accessibility alt text describes the artistic subject.

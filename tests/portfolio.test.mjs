@@ -14,7 +14,7 @@ test('entire four-entry CV work history is preserved, not turned into fake softw
  const names=['Faridh Fikri','PT STARLEAD TECHNOLOGY INDONESIA','COIL DISCO INDONESIA','PENGADILAN AGAMA JAKARTA SELATAN','BNN KOTA TANGERANG','UIN Syarif Hidayatullah Jakarta','Simplilearn','Juristic Indonesia','GLOBAL OPERATION INDONESIA'];
  for(const name of names)assert.ok(html.toLowerCase().includes(name.toLowerCase()),'missing source detail '+name);
  for(const term of ['PKWT','SKHPN','2025','3,76','2021—2025','2026','560','Peradilan Perdata &amp; Pidana','Contract Drafting','Administrasi HRGA','Microsoft Office','B2B/B2C'])assert.ok(html.includes(term),'missing factual term: '+term);
- assert.equal((html.match(/<details class="work-item"/g)||[]).length,4);
+ assert.equal((html.match(/class="work-page"/g)||[]).length,4);
  assert.equal((html.match(/class="certificate"/g)||[]).length,4);
  assert.doesNotMatch(html,/Faridh.*(Web Developer|Frontend Engineer)|Studio Aster|Lumen Project|award-winning|1000\+|95% satisfaction/i);
 });
@@ -26,9 +26,9 @@ test('real portrait and actual contact channels are intact',()=>{
  assert.ok(exists('assets/faridh-portrait.webp'));
 });
 test('impasto exhibits are complete independent raster paintings, not composited layers',()=>{
- assert.equal((html.match(/<img\b/g)||[]).length,2);
- assert.equal((html.match(/<figure\b/g)||[]).length,2);
- for(const name of ['impasto-dissolution.webp']){
+ assert.equal((html.match(/<img\b/g)||[]).length,4);
+ assert.equal((html.match(/<figure\b/g)||[]).length,4);
+ for(const name of ['impasto-dissolution.webp','impasto-procession.webp','impasto-horizon.webp']){
    assert.match(html,new RegExp(name.replace('.','\\.')));
    assert.ok(exists('assets/'+name),'missing full-resolution artwork '+name);
  }
@@ -53,6 +53,9 @@ test('reconstruction is structurally different from rejected image-as-card hero'
  assert.match(html,/class="cover-image"/);
  assert.doesNotMatch(html,/class="painting-intermission"/);
  assert.match(html,/class="skills"/);
+ assert.match(html,/class="work-story"/);
+ assert.match(html,/class="work-world-painting"/);
+ assert.match(html,/class="horizon-transition"/);
  assert.match(html,/class="education-gpa"/);
  assert.doesNotMatch(html,/class="opening-grid"|class="opening-art"|class="contact-art"/);
  assert.match(css,/\.cover h1/);
@@ -68,4 +71,17 @@ test('zero ornamental noise: arrows, redundant captions and decorative text are 
  assert.match(html,/>Kembali ke atas</);
  assert.match(html,/>Email</);
  assert.match(html,/>WhatsApp</);
+});
+
+test('meaningful scrolling replaces hidden dossiers without hijacking native page navigation',()=>{
+ assert.match(html,/id="work-pages"/);
+ assert.match(html,/id="work-prev"/);
+ assert.match(html,/id="work-next"/);
+ assert.match(html,/id="work-mobile-count"/);
+ assert.match(css,/position:sticky/);
+ assert.match(css,/scroll-snap-type:x mandatory/);
+ assert.match(js,/pagesRoot\.scrollTo/);
+ assert.match(js,/chooseIndex/);
+ for(const detail of ['Review dan penyusunan','Distribusi produk','Memverifikasi kelengkapan','Menyiapkan proses penerbitan SKHPN'])assert.ok(html.includes(detail));
+ assert.doesNotMatch(html,/<details\b/i);
 });

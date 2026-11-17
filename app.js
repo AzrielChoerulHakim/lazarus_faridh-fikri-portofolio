@@ -2,7 +2,7 @@
 (() => {
   const trigger = document.querySelector('.menu-button');
   const nav = document.querySelector('#mobile-nav');
-  const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav a');
+  const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
   const canUseMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function closeMenu(returnFocus = false) {

@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 
 const root=path.resolve(import.meta.dirname,'..');
-const output=path.join(root,'screenshots/faridh-impasto');
+const output=path.join(root,'screenshots/faridh-impasto-v2');
 fs.mkdirSync(output,{recursive:true});
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.webp':'image/webp','.png':'image/png'};
 const server=http.createServer((req,res)=>{
@@ -23,18 +23,25 @@ const server=http.createServer((req,res)=>{
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
 const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true});
-const report={branch:'experiment/faridh-impasto-full-rebuild',viewports:[],errors:[],paintings:[],knownLimitations:['The three 1536x1024 original study paintings are now committed, but a separate independent artistic critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
+const report={branch:'experiment/faridh-sculptural-impasto-v2',viewports:[],errors:[],paintings:[],knownLimitations:['The three 1536x1024 original study paintings are now committed, but a separate independent artistic critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
 try{
  for(const [width,height] of [[320,900],[390,844],[640,900],[768,1024],[1024,768],[1440,900],[832,384]]){
   const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce',hasTouch:width<=390});
   page.on('pageerror',e=>report.errors.push(e.message));
   page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)report.errors.push(r.status()+' '+r.url())});
   await page.goto(base+'/',{waitUntil:'load'});
+  await page.evaluate(()=>document.fonts.ready);
+  const identity=await page.locator('#cover-title').innerText();
+  assert.match(identity,/Faridh\s*Fikri/);
+  assert.equal(await page.locator('.cover-image img').count(),1);
+  assert.equal(await page.locator('.painting-intermission img').count(),1);
   const dimensions=await page.evaluate(()=>({body:document.body.scrollWidth,html:document.documentElement.scrollWidth,viewport:innerWidth}));
+  const headingRect=await page.locator('#cover-title').boundingBox();
+  assert.ok(headingRect.x>=-1&&headingRect.x+headingRect.width<=width+2,'hero typography runs offscreen at '+width+': '+JSON.stringify(headingRect));
   assert.ok(dimensions.html<=width+2,'horizontal overflow '+width+': '+JSON.stringify(dimensions));
   const arts=page.locator('figure img');
-  assert.equal(await arts.count(),4);
-  for(let i=0;i<4;i++){
+  assert.equal(await arts.count(),3);
+  for(let i=0;i<3;i++){
    const image=arts.nth(i);
    await image.scrollIntoViewIfNeeded();
    await image.evaluate(async img=>{await img.decode()});
@@ -46,15 +53,16 @@ try{
    }
    assert.ok(imgData.left>=-2&&imgData.right<=width+2,'clipped image '+width+' '+JSON.stringify(imgData));
    if(width===1440)report.paintings.push(imgData);
+   if(width===1440&&imgData.source==='assets/impasto-dissolution.webp')assert.ok(imgData.displayWidth>=1200,'hero painting is still a small side-card');
   }
-  const experience=page.locator('.experience-item');
+  const experience=page.locator('.work-item');
   assert.equal(await experience.count(),4);
   assert.equal(await experience.first().getAttribute('open'),'');
   await experience.nth(1).locator('summary').click();
   assert.ok(await experience.nth(1).evaluate(el=>el.open),'experience could not expand');
   await experience.nth(1).locator('summary').click();
   assert.ok(!(await experience.nth(1).evaluate(el=>el.open)),'experience could not close');
-  if(width<=710){
+  if(width<=720){
    const menu=page.locator('.menu-button');
    assert.ok(await menu.isVisible());
    await menu.click();
@@ -81,4 +89,4 @@ try{
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  await browser.close();server.close();
 }
-console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 4 local images; mobile navigation; interactive experience list.');
+console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 3 local images; mobile navigation; interactive experience list.');

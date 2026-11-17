@@ -26,16 +26,17 @@ test('real portrait and actual contact channels are intact',()=>{
  assert.ok(exists('assets/faridh-portrait.webp'));
 });
 test('impasto exhibits are complete independent raster paintings, not composited layers',()=>{
- assert.equal((html.match(/<img\b/g)||[]).length,3);
- assert.equal((html.match(/<figure\b/g)||[]).length,3);
- for(const name of ['impasto-dissolution.webp','impasto-procession.webp']){
+ assert.equal((html.match(/<img\b/g)||[]).length,2);
+ assert.equal((html.match(/<figure\b/g)||[]).length,2);
+ for(const name of ['impasto-dissolution.webp']){
    assert.match(html,new RegExp(name.replace('.','\\.')));
    assert.ok(exists('assets/'+name),'missing full-resolution artwork '+name);
  }
  assert.doesNotMatch(html,/<svg\b|<canvas\b|<picture\b|<model-viewer\b|<iframe\b/i);
  assert.doesNotMatch(css,/background-image|data:image|image-set\(|clip-path|mix-blend-mode|radial-gradient\(|linear-gradient\(|drop-shadow/i);
  assert.doesNotMatch(js,/pointermove|WebGL|three\.js|requestAnimationFrame|parallax/i);
- assert.match(html,/ILUSTRASI EDITORIAL, BUKAN PROYEK FARIDH/);
+ assert.doesNotMatch(html,/<figcaption\b/i);
+ assert.doesNotMatch(html,/PLATE Nº|FIG\. 01|SCULPTURAL IMPASTO|ILUSTRASI METAFORIS/i);
 });
 test('navigation, title, artwork and all facts are semantic and uniquely addressed',()=>{
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
@@ -50,7 +51,7 @@ test('navigation, title, artwork and all facts are semantic and uniquely address
 test('reconstruction is structurally different from rejected image-as-card hero',()=>{
  assert.match(html,/class="cover-type"/);
  assert.match(html,/class="cover-image"/);
- assert.match(html,/class="painting-intermission"/);
+ assert.doesNotMatch(html,/class="painting-intermission"/);
  assert.match(html,/class="skills"/);
  assert.match(html,/class="education-gpa"/);
  assert.doesNotMatch(html,/class="opening-grid"|class="opening-art"|class="contact-art"/);
@@ -58,4 +59,13 @@ test('reconstruction is structurally different from rejected image-as-card hero'
  assert.match(css,/\.cover-image img/);
  for(const w of [1160,900,720,420,350])assert.ok(css.includes('@media(max-width:'+w+'px)'),"missing "+w+" breakpoint");
  assert.match(css,/prefers-reduced-motion:reduce/);
+});
+
+test('zero ornamental noise: arrows, redundant captions and decorative text are absent',()=>{
+ assert.doesNotMatch(html,/[↗↘↑↓✳]|<svg\b|<figcaption\b/i);
+ assert.doesNotMatch(html,/PLATE Nº|SCULPTURAL IMPASTO|INTERMEZZO|STUDI MATERIAL 02|CATATAN DIRI|FF—01|ARSIP \/ 04 ENTRI|Bukan pajangan|01 \/ PENGANTAR/i);
+ assert.match(html,/>Lihat pengalaman</);
+ assert.match(html,/>Kembali ke atas</);
+ assert.match(html,/>Email</);
+ assert.match(html,/>WhatsApp</);
 });

@@ -23,7 +23,7 @@ const server=http.createServer((req,res)=>{
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
 const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true});
-const report={branch:'experiment/faridh-impasto-full-rebuild',viewports:[],errors:[],paintings:[],knownLimitations:['Imported Sculptural Impasto WebP image studies are low-resolution staging previews (200x133) and are not production-quality painting masters.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
+const report={branch:'experiment/faridh-impasto-full-rebuild',viewports:[],errors:[],paintings:[],knownLimitations:['The three 1536x1024 original study paintings are now committed, but a separate independent artistic critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
 try{
  for(const [width,height] of [[320,900],[390,844],[640,900],[768,1024],[1024,768],[1440,900],[832,384]]){
   const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce',hasTouch:width<=390});
@@ -40,6 +40,10 @@ try{
    await image.evaluate(async img=>{await img.decode()});
    const imgData=await image.evaluate(img=>{const r=img.getBoundingClientRect();return {source:img.getAttribute('src'),naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,left:r.left,right:r.right,displayWidth:r.width}});
    assert.ok(imgData.naturalWidth>=190&&imgData.naturalHeight>=100,'bad image: '+JSON.stringify(imgData));
+   if(imgData.source.startsWith('assets/impasto-')){
+     assert.equal(imgData.naturalWidth,1536,'low-resolution master not allowed: '+imgData.source);
+     assert.equal(imgData.naturalHeight,1024,'unexpected artwork aspect ratio: '+imgData.source);
+   }
    assert.ok(imgData.left>=-2&&imgData.right<=width+2,'clipped image '+width+' '+JSON.stringify(imgData));
    if(width===1440)report.paintings.push(imgData);
   }

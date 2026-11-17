@@ -3,6 +3,7 @@ name: Faridh Impasto Full Rebuild — QA
 on:
   push:
     branches:
+      - main
       - experiment/faridh-impasto-full-rebuild
       - experiment/faridh-sculptural-impasto-v2
     paths:

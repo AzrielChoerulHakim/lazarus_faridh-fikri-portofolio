@@ -1,0 +1,286 @@
+/* Faridh Fikri — rebuilt from zero using Lazarus Sculptural Impasto visual mapping.
+   No artistic SVG. One intact raster per artwork scene. No image stacks, cutouts,
+   procedural lighting, forced-3D, or decorative motion. */
+:root{
+  --navy:#131d2b;--navy2:#1b2937;--navy3:#253446;
+  --bone:#f2e8d8;--paper:#eae0d0;--paper2:#ddd0be;
+  --ink:#292a2c;--muted:#aeb9bc;--rust:#a35d47;--rust-dark:#783d35;
+  --line-light:rgba(233,222,207,.28);--line-dark:rgba(57,54,52,.22);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --edge:clamp(19px,4vw,72px);--content:1580px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;min-width:320px;background:var(--navy);color:var(--bone);font:400 16px/1.65 var(--sans);overflow-x:clip}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+img{display:block;max-width:100%;height:auto}
+figure,p,h1,h2,h3{margin:0}
+ul{margin:0;padding-left:1.25em}
+::selection{background:#d8b698;color:var(--navy)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #e9b785;outline-offset:4px}
+.skip-link{position:absolute;top:-110px;left:12px;z-index:200;padding:13px 17px;background:#fbf2e5;color:#162333}
+.skip-link:focus{top:12px}
+.shell{width:min(100%,var(--content));margin:0 auto;padding-inline:var(--edge)}
+.eyebrow,.section-line,.opening-line,.opening-bottom,.section-line--light,.chapter-small{
+ font:500 10px/1.6 var(--mono);letter-spacing:.12em
+}
+.site-header{position:relative;z-index:30;background:var(--navy);border-bottom:1px solid var(--line-light)}
+.header-inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:36px}
+.wordmark{display:inline-flex;align-items:center;gap:11px;white-space:nowrap}
+.wordmark strong{font:400 37px/.9 var(--serif);letter-spacing:-.07em;color:#cf9a7d}
+.wordmark span{font-size:12px;font-weight:700;letter-spacing:.13em}
+.desktop-nav{display:flex;justify-content:center;gap:clamp(13px,2.6vw,45px);align-items:center}
+.desktop-nav a,.header-contact{font-size:12px;font-weight:500}
+.desktop-nav a{padding:15px 0;color:#d1d6d4;transition:color .2s}
+.desktop-nav a:hover,.desktop-nav a[aria-current="location"]{color:#e0aa87}
+.header-end{display:flex;align-items:center;gap:15px}
+.header-contact{border-bottom:1px solid #c18967;display:inline-flex;align-items:center;gap:19px;padding:10px 0;white-space:nowrap}
+.header-contact span{color:#c99a7d;font-size:16px}
+.menu-button{display:none;cursor:pointer;background:transparent;border:1px solid #746e6a;width:46px;height:44px;padding:10px 11px;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.menu-button span{display:block;height:1px;width:100%;background:var(--bone)}
+.menu-button[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.menu-button[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.mobile-nav{background:#202b39;border-top:1px solid var(--line-light);padding:12px var(--edge) 20px}
+.mobile-nav a{display:block;min-height:50px;padding:14px 0;border-bottom:1px solid var(--line-light);font-size:16px}
+/* 01 — An opening where words and painterly architecture are separate elements */
+.opening{padding-top:32px;padding-bottom:22px}
+.opening-line{display:flex;justify-content:space-between;gap:24px;color:#aab6b6;border-top:1px solid var(--line-light);padding-top:14px}
+.opening-grid{display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);gap:clamp(32px,4.5vw,78px);align-items:center;padding:clamp(55px,6vw,95px) 0 52px}
+.opening-copy{min-width:0}
+.opening-eyebrow{color:#cfa080;margin-bottom:24px}
+.opening h1{font:400 clamp(62px,6.3vw,111px)/.92 var(--serif);letter-spacing:-.061em;max-width:10.4ch;text-wrap:balance}
+.opening h1 em{font-weight:400;color:#dfad90}
+.opening-lead{margin-top:30px;max-width:37ch;color:#d4d6d1;font-size:clamp(15px,1.24vw,18px);line-height:1.73}
+.opening-actions{display:flex;align-items:center;gap:clamp(20px,3vw,45px);flex-wrap:wrap;margin-top:33px}
+.button-light{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;background:#e9dfd0;color:#1c2a35;padding:15px 17px;min-height:52px;min-width:225px;font-size:12px;font-weight:700;transition:background .2s,color .2s}
+.button-light:hover{background:#d8b49a}
+.button-light span{font-size:20px;font-weight:400}
+.text-action{font-size:13px;border-bottom:1px solid #bc9479;padding:11px 0;white-space:nowrap}
+.text-action span{margin-left:12px}
+.painted-scene img{width:100%;aspect-ratio:3/2;object-fit:contain;background:#29354a}
+.opening-art img{border:1px solid rgba(241,223,198,.2)}
+.opening-art figcaption,.chapter-painting figcaption,.contact-art figcaption{display:flex;justify-content:space-between;gap:18px;margin-top:12px;color:#b4b7b6;font:400 9px/1.5 var(--mono);letter-spacing:.07em}
+.opening-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line-light);padding-top:15px;color:#aab6b5}
+.interlude{background:#9a634e;color:#fbefdc}
+.interlude-grid{min-height:160px;display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center;padding-block:27px}
+.interlude-grid p:first-child{font:400 clamp(33px,3.4vw,55px)/1.08 var(--serif);letter-spacing:-.038em}
+.interlude-grid p:last-child{max-width:41ch;font-size:16px;line-height:1.7}
+/* 02 — Authentic human image anchors the professional CV */
+.profile{background:var(--paper);color:var(--ink)}
+.profile-grid{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(35px,7vw,116px);align-items:stretch;padding-block:clamp(72px,8vw,130px)}
+.profile-media{min-width:0;align-self:start}
+.portrait{max-width:510px}
+.portrait img{width:100%;max-height:690px;aspect-ratio:4/5;object-fit:cover;object-position:center 24%;background:#aba397}
+.portrait figcaption{border-top:1px solid var(--line-dark);margin-top:15px;padding-top:11px;display:flex;justify-content:space-between;gap:15px;font:500 10px var(--mono);letter-spacing:.08em;color:#655d57}
+.profile-content{min-width:0}
+.section-line{display:flex;align-items:center;justify-content:space-between;gap:22px;border-top:1px solid #999288;padding-top:14px;color:#776a62}
+.profile h2,.section-intro h2,.competence h2,.education h2,.contact h2,.chapter-copy h2{font:400 clamp(69px,7.25vw,124px)/.91 var(--serif);letter-spacing:-.061em}
+.profile h2{margin-top:clamp(38px,5vw,78px)}
+.profile h2 em,.education h2 em{font-weight:400;color:#a0644f}
+.profile-reading{margin-top:28px;max-width:60ch;color:#484544;font-size:16px;line-height:1.84}
+.profile-reading p+p{margin-top:16px}
+.profile-facts{margin-top:45px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:1px solid #ada399;padding-top:25px}
+.profile-facts div{min-width:0}
+.profile-facts strong{display:block;font:400 clamp(24px,3.2vw,44px)/1 var(--serif);letter-spacing:-.035em}
+.profile-facts span{display:block;margin-top:11px;font-size:11px;color:#756c65}
+/* 03 — The four true CV experiences, no fabricated portfolio projects */
+.experience{background:#e9e0d3;color:var(--ink);padding-block:clamp(70px,9vw,140px)}
+.section-intro .section-line{margin-bottom:45px}
+.intro-cols{display:grid;grid-template-columns:1.25fr .6fr;gap:clamp(35px,8vw,140px);align-items:end}
+.section-intro h2{font-size:clamp(62px,7.35vw,122px)}
+.section-intro h2 em{color:#ad7358}
+.intro-cols>p{font-size:clamp(15px,1.32vw,18px);max-width:35ch;color:#665b52;line-height:1.75;margin-bottom:7px}
+.experience-list{margin-top:clamp(42px,6vw,90px);border-top:1px solid #837e76}
+.experience-item{border-bottom:1px solid #9b958a}
+.experience-item summary{display:grid;grid-template-columns:50px minmax(0,1fr) minmax(115px,160px) 44px;align-items:center;column-gap:20px;padding:30px 0;list-style:none;cursor:pointer;min-height:105px}
+.experience-item summary::-webkit-details-marker{display:none}
+.job-no{font:400 13px var(--mono);color:#a06853;align-self:start;margin-top:6px}
+.job-main{display:grid;min-width:0;gap:8px}
+.job-main strong{font:400 clamp(28px,3.5vw,49px)/1 var(--serif);letter-spacing:-.032em}
+.job-main>span{font-size:14px;color:#6a615a}
+.job-date{font:500 11px/1.4 var(--mono);color:#73695f;text-align:right}
+.job-toggle{display:grid;place-items:center;width:42px;height:42px;border:1px solid #7f766d;color:#3d3935;justify-self:end}
+.job-toggle::after{content:"+";font:400 24px/1 var(--serif)}
+.experience-item[open] .job-toggle::after{content:"−"}
+.experience-item[open] .job-main strong{color:#8f4d39}
+.experience-item summary:hover .job-main strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.job-detail{display:grid;grid-template-columns:minmax(0,.52fr) minmax(0,1fr);column-gap:clamp(25px,5vw,80px);padding:0 62px 33px 70px;color:#4d4842}
+.job-detail p{max-width:30ch;font-size:15px;line-height:1.77;color:#635950}
+.job-detail ul{max-width:69ch;font-size:15px;line-height:1.8}
+.job-detail li+li{margin-top:9px}
+.experience-source{max-width:80ch;margin-top:27px;font-size:11px;color:#80776f;line-height:1.7}
+/* 04 — An entire impasto scene, not objects split into browser layers */
+.visual-chapter{background:#793f39;color:#f7e5cf}
+.visual-chapter-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(35px,5vw,82px);align-items:center;padding-block:clamp(58px,7vw,112px)}
+.chapter-copy .eyebrow{color:#ebbaa0}
+.chapter-copy h2{font-size:clamp(54px,5.7vw,98px);margin-top:30px}
+.chapter-copy h2 em{color:#ebbb9e;font-weight:400}
+.chapter-copy>p{margin-top:23px;max-width:38ch;color:#f3daca;line-height:1.78}
+.chapter-small{display:block;margin-top:38px;color:#d1af9f}
+.chapter-painting img{background:#54383b;border:1px solid rgba(253,228,200,.2)}
+.chapter-painting figcaption{color:#e4c7b9}
+/* 05 — Skilled areas as a sober textual index */
+.competence{background:#1c2937;color:#f1e7d7;padding-block:clamp(70px,9vw,134px)}
+.section-line--light{color:#c7bdb1;border-color:rgba(243,233,220,.29)}
+.competence-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(55px,7vw,110px);margin-top:clamp(50px,7vw,95px)}
+.competence h2 em{color:#dfad90;font-weight:400}
+.competence-lede{max-width:35ch;margin-top:25px;color:#c9cbd0;font-size:17px}
+.competence-list{border-top:1px solid #6d7178}
+.competence-list div{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:22px;padding:25px 0;border-bottom:1px solid #6d7178}
+.competence-list span{color:#c69b80;font:400 11px var(--mono)}
+.competence-list p{font:400 clamp(23px,2.8vw,41px)/1.11 var(--serif)}
+/* 06 — Qualifications kept separate from paintings */
+.education{background:#e7ddce;color:#2b2b2c;padding-block:clamp(70px,9vw,132px)}
+.education-grid{display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);gap:clamp(45px,10vw,168px);padding-top:clamp(46px,6vw,87px)}
+.education h2{font-size:clamp(65px,6.5vw,110px);margin-bottom:clamp(55px,7vw,110px)}
+.edu-primary .eyebrow{color:#97624e}
+.edu-primary h3{font:400 clamp(36px,4vw,57px)/1.02 var(--serif);margin-top:22px}
+.edu-primary>p:not(.eyebrow){color:#655950;margin-top:8px}
+.gpa{display:flex;gap:22px;align-items:end;margin-top:48px;padding-top:15px;border-top:1px solid #b9ae9e}
+.gpa strong{font:400 clamp(73px,8vw,120px)/.84 var(--serif);letter-spacing:-.058em}
+.gpa span{font:500 10px var(--mono);color:#85715e;padding-bottom:9px}
+.edu-training{padding-top:8px}
+.edu-training h3{font:400 clamp(33px,3.4vw,49px) var(--serif);margin-bottom:32px}
+.training{display:grid;grid-template-columns:100px 1fr;gap:24px;border-top:1px solid #b7ac9f;padding:19px 0}
+.training:last-child{border-bottom:1px solid #b7ac9f}
+.training>span{font:500 10px/1.5 var(--mono);color:#946c58;padding-top:5px}
+.training strong{display:block;font:400 clamp(22px,2.5vw,33px)/1.08 var(--serif)}
+.training p{font-size:13px;color:#6c645c;margin-top:8px}
+/* 07 — Clear, working contact, image never obscures CTA */
+.contact{background:#9f5c49;color:#fff0dd}
+.contact-main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(35px,6vw,95px);align-items:center;padding-block:clamp(70px,9vw,140px)}
+.contact-intro .eyebrow{color:#f1c8a9}
+.contact h2{font-size:clamp(66px,7.2vw,122px);margin:24px 0 23px}
+.contact h2 em{font-weight:400;color:#f8d5b3}
+.contact-intro>p:not(.eyebrow):not(.contact-location){max-width:43ch;color:#ffead8;font-size:17px}
+.contact-links{margin-top:42px;max-width:680px;border-top:1px solid #e1ae97}
+.contact-links a{display:grid;grid-template-columns:90px minmax(0,1fr) 30px;gap:20px;align-items:center;min-height:83px;border-bottom:1px solid #e1ae97}
+.contact-links a>span:first-child{font:500 10px var(--mono);color:#f4cbb4}
+.contact-links strong{font-weight:500;font-size:clamp(12px,1.36vw,19px);overflow-wrap:anywhere}
+.contact-links a>span:last-child{font-size:20px;justify-self:end}
+.contact-links a:hover strong{text-decoration:underline;text-underline-offset:5px}
+.contact-location{font:500 11px var(--mono);margin-top:28px;color:#f7ceb6}
+.contact-art img{background:#764e4d;border:1px solid rgba(255,234,217,.23)}
+.contact-art figcaption{color:#f9d8c5}
+.site-footer{background:#141e2b;color:#c7c8c5}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:86px;font-size:11px}
+.site-footer a{border-bottom:1px solid #a58173;padding:9px 0}
+/* Recomposition, not scaled desktop; copy and raster art remain independent. */
+@media(max-width:1190px){
+  .opening h1{font-size:clamp(58px,6.5vw,90px)}
+  .profile h2{font-size:clamp(60px,7vw,96px)}
+  .chapter-copy h2{font-size:clamp(52px,6vw,78px)}
+  .contact h2{font-size:clamp(57px,7.2vw,95px)}
+}
+@media(max-width:930px){
+  .desktop-nav{gap:15px}
+  .desktop-nav a{font-size:11px}
+  .opening-grid{grid-template-columns:1fr}
+  .opening-copy{max-width:690px}
+  .opening h1{font-size:clamp(70px,10vw,112px)}
+  .opening-art{max-width:800px}
+  .profile-grid{gap:42px;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr)}
+  .profile h2{font-size:clamp(55px,7.4vw,84px)}
+  .profile-reading{font-size:15px}
+  .profile-facts{grid-template-columns:1fr 1fr}
+  .profile-facts div:last-child{grid-column:1/-1}
+  .intro-cols{gap:30px}
+  .intro-cols h2{font-size:clamp(60px,8.4vw,91px)}
+  .visual-chapter-grid{grid-template-columns:1fr}
+  .chapter-copy{max-width:710px}
+  .chapter-painting{max-width:950px}
+  .competence-grid{gap:30px}
+  .education-grid{gap:42px}
+  .contact-main{grid-template-columns:1fr}
+  .contact-art{max-width:780px}
+}
+@media(max-width:710px){
+  .header-inner{height:70px}
+  .desktop-nav,.header-contact{display:none}
+  .menu-button{display:flex}
+  .opening-line span:last-child,.opening-bottom span:last-child{display:none}
+  .opening-grid{padding:52px 0 42px}
+  .opening h1{font-size:clamp(65px,11.6vw,92px)}
+  .interlude-grid{grid-template-columns:1fr;gap:20px}
+  .interlude-grid p:last-child{font-size:15px}
+  .profile-grid{grid-template-columns:1fr;padding-block:65px;gap:42px}
+  .profile-media{order:2}
+  .profile-content{order:1}
+  .profile h2{font-size:clamp(66px,10.5vw,94px);margin-top:35px}
+  .profile-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .profile-facts div:last-child{grid-column:auto}
+  .portrait{max-width:600px}
+  .portrait img{aspect-ratio:4/4.6;object-position:center 15%}
+  .intro-cols{grid-template-columns:1fr;gap:25px}
+  .intro-cols h2{font-size:clamp(65px,10vw,90px)}
+  .experience-item summary{grid-template-columns:36px 1fr 36px;gap:13px;padding:23px 0}
+  .job-date{grid-column:2;grid-row:2;text-align:left}
+  .job-toggle{grid-column:3;grid-row:1/span 2}
+  .job-no{grid-column:1;grid-row:1}
+  .job-main{grid-column:2;grid-row:1}
+  .job-main strong{font-size:clamp(30px,5vw,40px)}
+  .job-detail{display:block;padding:0 6px 25px 49px}
+  .job-detail p{max-width:60ch;margin-bottom:12px}
+  .competence-grid{grid-template-columns:1fr;gap:40px}
+  .competence h2{font-size:clamp(70px,10vw,95px)}
+  .education-grid{grid-template-columns:1fr;gap:75px}
+  .education h2{font-size:clamp(70px,10vw,96px);margin-bottom:38px}
+  .contact h2{font-size:clamp(65px,10.5vw,100px)}
+}
+@media(max-width:430px){
+  :root{--edge:20px}
+  .opening{padding-top:20px}
+  .opening-grid{padding:44px 0 34px}
+  .opening h1{font-size:clamp(55px,13vw,67px)}
+  .opening-lead{font-size:15px;margin-top:22px}
+  .opening-actions{gap:15px;margin-top:25px}
+  .button-light{min-height:49px}
+  .opening-art figcaption span:last-child{display:none}
+  .interlude-grid{padding-block:31px}
+  .interlude-grid p:first-child{font-size:37px}
+  .profile h2{font-size:clamp(60px,12vw,73px)}
+  .profile-reading{font-size:15px}
+  .profile-facts{gap:14px}
+  .profile-facts strong{font-size:29px}
+  .profile-facts span{font-size:10px}
+  .profile-facts div:last-child strong{font-size:25px}
+  .section-line span:last-child{display:none}
+  .intro-cols h2{font-size:clamp(58px,12vw,77px)}
+  .job-main strong{font-size:29px}
+  .job-main>span{font-size:13px}
+  .experience-item summary{gap:9px}
+  .job-toggle{width:35px;height:35px}
+  .job-detail{padding-left:44px}
+  .visual-chapter-grid{padding-block:65px}
+  .chapter-copy h2{font-size:clamp(55px,12vw,70px)}
+  .chapter-painting figcaption{font-size:9px}
+  .competence h2{font-size:clamp(65px,12vw,80px)}
+  .competence-list p{font-size:29px}
+  .education h2{font-size:clamp(59px,12vw,75px)}
+  .training{grid-template-columns:83px 1fr;gap:15px}
+  .training strong{font-size:24px}
+  .contact h2{font-size:clamp(61px,12vw,80px)}
+  .contact-intro>p:not(.eyebrow):not(.contact-location){font-size:15px}
+  .contact-links a{grid-template-columns:1fr 24px;gap:6px;min-height:90px;padding:15px 0}
+  .contact-links a>span:first-child{grid-column:1}
+  .contact-links a>strong{grid-column:1;grid-row:2}
+  .contact-links a>span:last-child{grid-column:2;grid-row:1/span 2}
+  .footer-inner{display:block;padding-block:22px}
+  .footer-inner a{display:inline-block;margin-top:9px}
+}
+@media(max-width:350px){
+  .wordmark span{font-size:10px}
+  .opening h1{font-size:52px}
+  .profile h2,.intro-cols h2,.education h2{font-size:54px}
+  .profile-facts{grid-template-columns:1fr 1fr}
+  .profile-facts div:last-child{grid-column:1/-1}
+  .job-main strong{font-size:26px}
+  .chapter-copy h2{font-size:52px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}

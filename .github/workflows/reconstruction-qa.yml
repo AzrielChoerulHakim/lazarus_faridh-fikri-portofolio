@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - experiment/faridh-impasto-full-rebuild
+      - experiment/faridh-sculptural-impasto-v2
     paths:
       - 'index.html'
       - 'styles.css'

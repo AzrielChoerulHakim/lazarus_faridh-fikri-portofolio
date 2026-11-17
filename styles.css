@@ -335,3 +335,99 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #cf
  .footer{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+
+/* SCROLL-LED SCULPTURAL IMPASTO / third iteration
+   A painting remains one intact image; scrolling changes which factual work
+   record the reader is visiting, not the painting's geometry or light. */
+.header{position:sticky;top:0;z-index:40}
+.cover-type{padding-bottom:clamp(25px,3vw,52px)}
+.cover h1{margin-top:clamp(24px,3.2vw,48px);margin-bottom:clamp(27px,3.2vw,50px)}
+.profile{padding-top:clamp(50px,6vw,100px);padding-bottom:clamp(50px,6vw,100px)}
+.profile-heading{padding-top:clamp(30px,4.5vw,70px);padding-bottom:clamp(35px,4.5vw,80px)}
+.profile-heading h2{font-size:clamp(60px,7.7vw,132px)}
+.profile-body{gap:clamp(30px,6vw,112px)}
+.work{padding-top:clamp(50px,6vw,95px);padding-bottom:clamp(45px,6vw,90px)}
+.work-heading{padding:clamp(22px,3vw,45px) 0 clamp(35px,4.5vw,75px);grid-template-columns:minmax(0,1.22fr) minmax(220px,.65fr)}
+.work-heading h2{font-size:clamp(61px,7.3vw,128px);line-height:.9}
+.work-heading>p{align-self:end;margin-bottom:8px;max-width:33ch}
+.work-story{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(32px,5vw,90px);align-items:start}
+.work-world{position:sticky;top:105px;min-width:0;display:flex;flex-direction:column;align-self:start;background:var(--indigo);color:var(--ivory)}
+.work-world-painting{margin:0;padding:clamp(8px,1.15vw,17px)}
+.work-world-painting img{width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.work-world-progress{border-top:1px solid rgba(246,230,207,.35);display:flex;justify-content:space-between;gap:15px;padding:17px clamp(12px,1.6vw,24px);font:500 12px/1.5 var(--mono)}
+.work-world-progress>span{color:#e6d4c0}
+.work-world-progress output{color:#f6e7d8;font:inherit;white-space:nowrap}
+.work-pages{min-width:0;border-top:1px solid #7a6d60}
+.work-page{position:relative;min-height:clamp(460px,63vh,665px);display:flex;flex-direction:column;justify-content:center;gap:0;padding:clamp(36px,5vw,82px) 0;border-bottom:1px solid #9d8c7a;scroll-margin-top:96px}
+.work-page-meta{display:flex;justify-content:space-between;gap:15px;font:500 11px/1.5 var(--mono);color:#8d5849}
+.work-page h3{max-width:15ch;font:500 clamp(44px,4.8vw,78px)/.95 var(--display);letter-spacing:-.058em;margin:clamp(20px,3vw,44px) 0 12px;overflow-wrap:break-word}
+.work-company{font-weight:600;color:#6a5148;font-size:clamp(13px,1.22vw,17px);margin:0 0 clamp(24px,3vw,44px)}
+.work-page ul{padding-left:1.1em;max-width:65ch;font-size:clamp(14px,1.06vw,16px);line-height:1.72;color:#3d3934}
+.work-page li+li{margin-top:9px}
+.work-mobile-controls{display:none}
+.skillset{padding-top:clamp(55px,6vw,90px);padding-bottom:clamp(55px,6vw,90px)}
+.skill-heading{padding-top:clamp(35px,4vw,70px);padding-bottom:clamp(32px,4vw,75px)}
+.skill-heading h2{font-size:clamp(64px,7.4vw,124px)}
+.skills>li{padding:clamp(23px,3vw,44px) 0}
+.skills strong{font-size:clamp(33px,3.8vw,64px)}
+.education{padding-top:clamp(55px,6vw,95px);padding-bottom:clamp(50px,6vw,100px)}
+.education-top{padding:clamp(35px,5vw,80px) 0 clamp(45px,6vw,98px)}
+.education-heading h2{font-size:clamp(72px,8.6vw,140px)}
+.certificate{padding:22px 0}
+.horizon-transition{background:var(--indigo);padding:clamp(8px,1.5vw,24px)}
+.horizon-transition figure{margin:0;overflow:hidden}
+.horizon-transition img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.contact{padding-top:clamp(42px,5vw,80px)}
+.contact-layout{padding-top:clamp(25px,3vw,48px);padding-bottom:clamp(50px,6vw,110px)}
+.contact-layout h2{font-size:clamp(78px,10vw,160px)}
+/* Tablet: scroll-story stays readable without trapping or pinned horizontal artwork. */
+@media(max-width:1000px){
+ .work-story{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:25px}
+ .work-world{top:94px}
+ .work-page{min-height:490px}
+ .work-page h3{font-size:clamp(38px,4.7vw,56px)}
+ .work-heading{grid-template-columns:1fr minmax(200px,.55fr)}
+ .work-heading h2{font-size:clamp(58px,8vw,98px)}
+}
+@media(max-width:720px){
+ .work{padding:55px 0 45px}
+ .work-heading{padding:0 var(--margin) 30px;display:block}
+ .work-heading h2{font-size:clamp(56px,11.2vw,80px)}
+ .work-heading>p{max-width:55ch;font-size:14px;margin:16px 0 0}
+ .work-story{display:block}
+ .work-world{position:relative;top:auto;margin:0 var(--margin) 24px}
+ .work-world-painting{padding:9px}
+ .work-world-progress{padding:12px 15px;font-size:11px}
+ .work-pages{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--margin);padding:4px var(--margin) 18px;border-top:0;scrollbar-width:thin}
+ .work-page{display:block;flex:0 0 min(86vw,510px);min-height:0;align-self:stretch;padding:27px 23px 30px;background:#e2d4c1;border:1px solid #bbab98;scroll-snap-align:start;scroll-margin-top:0}
+ .work-page-meta{display:grid;gap:4px;font-size:10px}
+ .work-page h3{font-size:clamp(37px,7.8vw,55px);line-height:1.04;margin:23px 0 12px}
+ .work-company{margin-bottom:24px;font-size:13px}
+ .work-page ul{font-size:14px;line-height:1.68}
+ .work-page li+li{margin-top:10px}
+ .work-mobile-controls{display:flex;justify-content:space-between;align-items:center;gap:13px;margin:7px var(--margin) 0}
+ .work-mobile-controls button{min-height:44px;padding:8px 13px;border:1px solid #8d7865;background:transparent;color:#342c28;cursor:pointer;font:600 12px var(--body)}
+ .work-mobile-controls button:disabled{opacity:.4;cursor:default}
+ .work-mobile-controls>span{font:500 11px var(--mono);white-space:nowrap}
+ .horizon-transition{padding:9px}
+ .cover h1{margin:36px 0 40px}
+ .profile-heading{padding-bottom:38px}
+ .profile{padding-block:55px}
+ .skillset{padding-block:55px}
+ .education{padding-block:55px}
+ .contact{padding-top:50px}
+ .contact-layout{padding-top:28px;padding-bottom:70px}
+}
+@media(max-width:420px){
+ .work-heading h2{font-size:clamp(53px,14.2vw,63px)}
+ .work-page{flex-basis:calc(100vw - 58px);padding:25px 20px}
+ .work-page h3{font-size:clamp(34px,9vw,42px)}
+ .work-page-meta{font-size:9px}
+ .work-page ul{font-size:13.5px}
+ .work-mobile-controls{gap:8px}
+ .work-mobile-controls button{font-size:11px;padding:7px 9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .work-pages{scroll-behavior:auto}
+}

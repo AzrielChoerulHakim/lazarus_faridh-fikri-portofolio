@@ -26,7 +26,7 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && !nav.hidden) closeMenu(true);
     });
-    const desktop = window.matchMedia('(min-width: 711px)');
+    const desktop = window.matchMedia('(min-width: 721px)');
     const onDesktop = () => { if (desktop.matches) closeMenu(); };
     if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
     else if (desktop.addListener) desktop.addListener(onDesktop);

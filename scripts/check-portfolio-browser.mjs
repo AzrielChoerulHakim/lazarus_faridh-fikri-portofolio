@@ -23,7 +23,7 @@ const server=http.createServer((req,res)=>{
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
 const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true});
-const report={branch:'experiment/faridh-sculptural-impasto-v2',viewports:[],errors:[],paintings:[],knownLimitations:['The three 1536x1024 original study paintings are now committed, but a separate independent artistic critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
+const report={branch:'main',viewports:[],errors:[],paintings:[],knownLimitations:['The hero painting is a 1536x1024 original, but independent art-direction critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
 try{
  for(const [width,height] of [[320,900],[390,844],[640,900],[768,1024],[1024,768],[1440,900],[832,384]]){
   const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce',hasTouch:width<=390});
@@ -34,14 +34,16 @@ try{
   const identity=await page.locator('#cover-title').innerText();
   assert.match(identity,/Faridh\s*Fikri/);
   assert.equal(await page.locator('.cover-image img').count(),1);
-  assert.equal(await page.locator('.painting-intermission img').count(),1);
+  assert.equal(await page.locator('figcaption').count(),0);
+  const ornaments=await page.locator('body').innerText();
+  assert.doesNotMatch(ornaments,/PLATE Nº|ARSITEKTUR YANG MENCAIR|SCULPTURAL IMPASTO|ILUSTRASI METAFORIS/);
   const dimensions=await page.evaluate(()=>({body:document.body.scrollWidth,html:document.documentElement.scrollWidth,viewport:innerWidth}));
   const headingRect=await page.locator('#cover-title').boundingBox();
   assert.ok(headingRect.x>=-1&&headingRect.x+headingRect.width<=width+2,'hero typography runs offscreen at '+width+': '+JSON.stringify(headingRect));
   assert.ok(dimensions.html<=width+2,'horizontal overflow '+width+': '+JSON.stringify(dimensions));
   const arts=page.locator('figure img');
-  assert.equal(await arts.count(),3);
-  for(let i=0;i<3;i++){
+  assert.equal(await arts.count(),2);
+  for(let i=0;i<2;i++){
    const image=arts.nth(i);
    await image.scrollIntoViewIfNeeded();
    await image.evaluate(async img=>{await img.decode()});
@@ -89,4 +91,4 @@ try{
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  await browser.close();server.close();
 }
-console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 3 local images; mobile navigation; interactive experience list.');
+console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 2 local images; mobile navigation; interactive experience list.');

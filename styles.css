@@ -249,8 +249,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #cf
  .profile-image img{aspect-ratio:5/5.6;object-position:center 19%}
  .profile-dossier{padding:0}
 
- .identity-data{grid-template-columns:repeat(3,minmax(0,1fr))}
- .identity-data>div:last-child{grid-column:auto}
+ .identity-data{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .identity-data>div:last-child{grid-column:1/-1}
  .identity-data strong{font-size:clamp(23px,5vw,39px)}
  .profile-bottom span:last-child{display:none}
  .work{padding-block:75px}

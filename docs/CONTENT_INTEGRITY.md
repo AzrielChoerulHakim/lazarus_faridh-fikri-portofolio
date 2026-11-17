@@ -55,4 +55,4 @@ Chosen composition is **evidence-first editorial passage**:
 6. Education, GPA and four trainings.
 7. Direct email and WhatsApp actions, closing painterly horizon.
 
-The rendered website contains **no artistic SVG, no CSS image stacking, and no 3D parallax**. The imported Design OS GitHub artwork is currently **preview-only** (200×133), and must be upgraded from the original 1536×1024 files before visual production approval; this is a known blocker, not a code defect.
+The rendered website contains **no artistic SVG, no CSS image stacking, and no 3D parallax**. The original three **1536×1024 raster paintings have now been committed directly into this Faridh GitHub branch** (optimized WebP, each with verified Git blob checksum). They replace the previously imported 200×133 research thumbnails. Final human aesthetic approval and cross-browser/200% text QA remain separate steps, not assertions of automatic visual perfection.

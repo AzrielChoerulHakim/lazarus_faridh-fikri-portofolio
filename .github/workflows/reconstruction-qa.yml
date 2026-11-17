@@ -51,5 +51,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: faridh-impasto-visual-review
-          path: screenshots/faridh-impasto/
+          path: screenshots/faridh-impasto-v2/
           if-no-files-found: warn

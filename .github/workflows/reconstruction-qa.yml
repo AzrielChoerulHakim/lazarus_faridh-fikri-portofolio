@@ -1,4 +1,4 @@
-name: Faridh Impasto Full Rebuild — QA
+name: Faridh Portfolio Editorial Narrative — QA
 
 on:
   push:
@@ -6,10 +6,13 @@ on:
       - main
       - experiment/faridh-impasto-full-rebuild
       - experiment/faridh-sculptural-impasto-v2
+      - experiment/faridh-surrealist-brutalism-v3
     paths:
       - 'index.html'
       - 'styles.css'
+      - 'advance.css'
       - 'app.js'
+      - 'advance.js'
       - 'assets/**'
       - 'tests/**'
       - 'scripts/**'
@@ -40,6 +43,7 @@ jobs:
       - name: Check Javascript and CV fact invariants
         run: |
           node --check app.js
+          node --check advance.js
           node --test tests/portfolio.test.mjs
       - name: Install browser
         run: |

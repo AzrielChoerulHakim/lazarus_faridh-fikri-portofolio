@@ -1,49 +1,56 @@
-# Faridh Fikri — The Sculptural Impasto Exhibition
+# Faridh Fikri — Surrealist Editorial Brutalism / V3
 
-**Branch:** experiment/faridh-sculptural-impasto-v2  
-**Direction:** Surrealist Digital Editorial → Sculptural Impasto, from [Lazarus Design OS](https://github.com/AzrielChoerulHakim/lazarus-design-os/tree/experiment/sculptural-impasto-visual-mapping-v1/visual-directions/01-sculptural-impasto).
+**Production:** `main` (intentionally unchanged).  
+**Experimental direction:** `experiment/faridh-surrealist-brutalism-v3`.  
+**Creative system:** Lazarus Design OS / Sculptural Impasto × Typographic Brutalism × Native Scroll Storytelling.
 
-## Built from scratch: the art direction now decides the site
+This repository is a professional portfolio for **Faridh Fikri**, a law graduate with CV-backed exposure to corporate legal / HRGA, direct sales, and public-institution administration. It is not a fictional software-development portfolio.
 
-The previous experiment placed small paintings beside conventional serif headlines. This iteration **abandons that composition entirely**.
+## Narrative sequence
 
-The site behaves like an authored visual publication:
-1. **Cover / Typographic masthead** — Faridh Fikri's name becomes an independent, monumental title on the bone-pigment-colored page. The actual opening scene is **one intact 1536×1024 painting** occupying the website's full exhibition width, not a side-card.
-2. **Profile / Actual person** — authentic Faridh photograph and CV-based narrative, in a dark indigo dossier; the painting is never falsely represented as professional work.
-3. **Work / Primary evidence** — four genuinely held roles in a typeset professional ledger. No image distraction; every detail is accessible from native HTML disclosures.
-4. **Intermission / Physical pigment** — another uninterrupted original impasto painting breaks the reading rhythm, with a clearly separate explanatory title and caption.
-5. **Skills / Text-only material** — four actual skill families, no decorative cards.
-6. **Education / Record** — the real degree, IPK 3.76/4.00 and four training items form a structured typographic archive.
-7. **Contact / Useful ending** — verified email and WhatsApp remain visible and keyboard-reachable; no fictional creative projects.
+The previous site already included three original full-resolution impasto paintings and a real client portrait. V3 reauthors their **reading choreography** while preserving their source pixels and all factual résumé entries.
 
-## Non-negotiable visual constraints
+| Act | Visual behavior | Content / authorship |
+| --- | --- | --- |
+| 01 · Arrival | Monumental print masthead yields to a complete, indigo-toned impasto painting in a sticky scroll scene | Editorial metaphor, not a client project |
+| 02 · Individual | Dark photographic dossier with measured scroll emergence | Authentic, unaltered Faridh portrait and factual biography |
+| 03 · Four worlds | Scroll-following single painting, four fully readable professional records and live chapter emphasis | Original roles, dates, institutions and responsibilities |
+| 04 · Perspective | Full-screen, scroll-controlled typographic wipe | Editorial transition, not a first-person quote |
+| 05 · Anatomy | Severe four-line skills index with state emphasis | Actual CV competencies |
+| 06 · Evidence & departure | Monumental degree / GPA, training ledger, intact final horizon painting and direct contact links | Actual qualifications, email and WhatsApp |
 
-- One scene = **one original complete raster**. No artistic SVG, canvas, assembled cutouts, overlapping image collage, CSS fog/lighting, fake bump maps, or parallax.
-- The two used oil-painting files are **1536×1024** and committed as real binary Git objects in assets/.
-- Visual decisions follow the Design OS dual lighting model (moonlit illustrated world and oblique raised paint relief), spatial D0–D4 planes and section/responsive mapping.
-- Image depth and paint strokes already exist inside the originals. Web CSS only defines editorial space, framing, colors and typography.
-- Important text remains HTML outside artwork and works without visual effects.
-- Painting is labeled as a conceptual metaphor, never as a portfolio of Faridh's own design projects.
+**No generated case studies, invented companies, speculative achievements, manipulated photo identities, pseudo-3D image layers, Canvas artwork, or artificial image lighting.**
 
-## Exact career source
+## Runtime
 
-See [Content Integrity Ledger](docs/CONTENT_INTEGRITY.md). All factual content is derived from the previous CV-grounded main-branch site (Faridh Fikri, law degree UIN Jakarta, Corporate Legal / HRGA, Starlead, Coil Disco, Pengadilan Agama Jakarta Selatan and BNN Kota Tangerang, 4 trainings, GPA, original contact). The old PDF CV was not newly attached at this stage, so the ledger states this evidentiary boundary. The actual Faridh portrait has been preserved byte-for-byte.
+No build tools or application framework are required.
 
-## Code and visual QA
+- `index.html` — factual HTML, semantic sections and image references.
+- `styles.css` — the original baseline exhibition typography and responsive document structure.
+- `app.js` — native menu, navigation state and mobile work carousel.
+- `advance.css` — V3 art direction, cinematic sticky stages, responsive composition, reduced-motion alternatives.
+- `advance.js` — passive scroll measurement and rAF updates, no scroll hijacking.
+- `assets/` — Faridh's original portrait and three single-raster 1536×1024 impasto paintings.
+- `tests/` and `scripts/` — semantic, CV preservation and browser geometry QA.
+- `docs/CONTENT_INTEGRITY.md` — authoritative factual preservation ledger.
+- `docs/BRUTALISM_V3.md` — implementation design rationale and review criteria.
 
-This is a static website, no build command or app framework required. To run locally:
+## Local development and verification
 
-    python3 -m http.server 8000
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000/
+node --check app.js
+node --check advance.js
+node --test tests/portfolio.test.mjs
+# requires playwright and Chromium:
+node scripts/check-portfolio-browser.mjs
+```
 
-From repo root open \`http://localhost:8000/\`.
+The browser suite checks seven viewport sizes in reduced motion and two extra motion-enabled viewport passes, including pinned hero progression, typographic wipe progress, loaded source images, menu navigation, four work entries and horizontal overflow.
 
-    node --test tests/portfolio.test.mjs
-    node scripts/check-portfolio-browser.mjs
+## Release boundary
 
-The browser script runs in GitHub Actions with Playwright Chromium and collects full-page screenshots at **320, 390, 640, 768, 1024, 1440 and 832×384**. It checks full-res loaded images, the full-width hero, portfolio details, functional menu/disclosures, and horizontal overflow. Image quality and visual authorship are assessed additionally via real screenshots; CI is not proof of aesthetic excellence or full accessibility certification.
+This experiment exists on its own GitHub branch. The `main` branch and the public GitHub Pages deployment remain unchanged until deliberate review and merge. Automated checks are not substitutes for manual visual-art-direction evaluation, touch-device testing or cross-browser accessibility review.
 
-The pre-existing GitHub Pages workflow still publishes only \`main\`. This rebuild is intentionally isolated for review, and does not interfere with the current public site.
-
-## Design decisions
-
-[Art-direction reconstruction audit](docs/ART_DIRECTION_RECONSTRUCTION.md) explains why the rejected generic cards were discarded and how the painting-to-information translation now works. Tone of Voice, Anti-AI Generic, Typography and the original Lazarus production workflow remain external OS authorities, not rebuilt here.
+All career details were preserved from the existing repository's [content integrity ledger](docs/CONTENT_INTEGRITY.md). The original CV PDF was **not freshly re-read** for this V3 implementation; no new factual claim has been introduced.

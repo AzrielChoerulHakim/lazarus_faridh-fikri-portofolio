@@ -14,7 +14,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="advance.css">
 <script src="app.js" defer></script>
+<script src="advance.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Langsung ke konten</a>
@@ -39,7 +41,8 @@
 </header>
 
 <main id="main">
-<section class="cover" id="awal" aria-labelledby="cover-title">
+<section class="cover narrative-cover" id="awal" aria-labelledby="cover-title">
+  <div class="cover-pin">
   <div class="cover-type">
     <p class="cover-register">Ilmu Hukum · Tangerang, Banten</p>
     <h1 id="cover-title"><span>Faridh</span><em>Fikri.</em></h1>
@@ -53,9 +56,17 @@
     <img src="assets/impasto-dissolution.webp" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="Satu lukisan utuh cat minyak impasto tebal: barisan arsitektur batu runtuh dan mengalir menjadi lapisan pigmen krem dan sienna di bawah bulan besar berlangit indigo.">
     
   </figure>
+  <div class="cover-second" aria-hidden="true">
+    <p class="scene-kicker">01 / Sebuah perjalanan</p>
+    <p class="cover-second-title">Di antara<br><em>aturan</em> &amp; manusia.</p>
+    <span class="cover-second-foot">Empat lingkungan kerja. Satu riwayat profesional.</span>
+  </div>
+  <div class="cover-progress" aria-hidden="true"><span></span></div>
+  </div>
 </section>
 
-<section class="profile" id="profil" aria-labelledby="profile-title">
+<section class="profile narrative-profile" id="profil" aria-labelledby="profile-title">
+  <div class="profile-pin">
   <div class="section-index"><span>Profil</span></div>
   <div class="profile-heading">
     <h2 id="profile-title">Dari hukum<br><em>ke praktik.</em></h2>
@@ -75,6 +86,8 @@
       </div>
     </div>
   </div>
+  <div class="profile-rail" aria-hidden="true"><span>02 / Identitas &amp; praktik</span><span>Faridh Fikri · Tangerang</span></div>
+  </div>
 </section>
 
 <section class="work" id="pengalaman" aria-labelledby="work-title">
@@ -87,10 +100,12 @@
       <figure class="work-world-painting">
         <img src="assets/impasto-procession.webp" width="1536" height="1024" alt="Lukisan minyak timbul utuh: deretan pilar batu berubah menjadi aliran cat tebal yang membentuk jalur panjang di lanskap surealis." loading="lazy" decoding="async">
       </figure>
-      <div class="work-world-progress"><span>Pengalaman</span><output id="work-count" aria-live="polite">1 dari 4</output></div>
+      <div class="work-world-progress"><span>03 / Lintasan profesional</span><output id="work-count" aria-live="polite">1 dari 4</output></div>
+      <div class="work-world-annotation">Empat lingkungan kerja · Berdasarkan riwayat CV</div>
     </aside>
     <div class="work-pages" id="work-pages" aria-label="Empat pengalaman profesional Faridh">
       <article class="work-page" id="work-1" data-work="1" tabindex="-1">
+        <span class="work-chapter-number" aria-hidden="true">01</span>
         <div class="work-page-meta"><span>Sep–Des 2025</span><span>Corporate Legal &amp; HRGA</span></div>
         <h3>Management Trainee — HRGA</h3>
         <p class="work-company">PT Starlead Technology Indonesia</p>
@@ -102,6 +117,7 @@
         </ul>
       </article>
       <article class="work-page" id="work-2" data-work="2" tabindex="-1">
+        <span class="work-chapter-number" aria-hidden="true">02</span>
         <div class="work-page-meta"><span>Des 2022–Jul 2026</span><span>Sales</span></div>
         <h3>Freelance Sales Representative</h3>
         <p class="work-company">Coil Disco Indonesia</p>
@@ -113,6 +129,7 @@
         </ul>
       </article>
       <article class="work-page" id="work-3" data-work="3" tabindex="-1">
+        <span class="work-chapter-number" aria-hidden="true">03</span>
         <div class="work-page-meta"><span>Feb 2024</span><span>Administrasi Perkara</span></div>
         <h3>Magang — Administrasi Perkara</h3>
         <p class="work-company">Pengadilan Agama Jakarta Selatan</p>
@@ -123,6 +140,7 @@
         </ul>
       </article>
       <article class="work-page" id="work-4" data-work="4" tabindex="-1">
+        <span class="work-chapter-number" aria-hidden="true">04</span>
         <div class="work-page-meta"><span>Jan 2023</span><span>Administrasi Hukum</span></div>
         <h3>Magang — Administrasi Hukum</h3>
         <p class="work-company">BNN Kota Tangerang</p>
@@ -141,8 +159,19 @@
   </div>
 </section>
 
+<section class="statement-stage" id="perspektif" aria-labelledby="statement-title">
+  <div class="statement-pin">
+    <div class="statement-head"><span>04 / Perspektif</span><span>Dari ruang ke ruang</span></div>
+    <div class="statement-pair">
+      <h2 class="statement-text statement-base" id="statement-title">Dari aturan.<br>Menuju tindakan.</h2>
+      <p class="statement-text statement-fill" aria-hidden="true">Dari aturan.<br>Menuju tindakan.</p>
+    </div>
+    <div class="statement-tail"><p class="statement-sub">Hukum, administrasi, operasional, dan interaksi langsung—bagian-bagian dari perjalanan yang sama.</p><span>Gulir untuk melanjutkan</span></div>
+  </div>
+</section>
+
 <section class="skillset" id="kompetensi" aria-labelledby="skill-title">
-  <div class="skill-heading"><h2 id="skill-title">Keahlian.</h2></div>
+  <div class="skill-heading"><p class="skill-kicker"><span>05 / Kapabilitas</span><span>Empat bidang kompetensi</span></p><h2 id="skill-title">Keahlian.</h2></div>
   <ol class="skills">
     <li><strong>Legal drafting &amp;<br>contract review</strong></li>
     <li><strong>Administrasi HRGA<br>&amp; dokumen hukum</strong></li>
@@ -166,8 +195,11 @@
   </div>
 </section>
 
-<div class="horizon-transition">
+<div class="horizon-transition" id="horizon">
+  <div class="horizon-pin">
   <figure><img src="assets/impasto-horizon.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Lukisan minyak timbul utuh: tangga batu naik menuju lautan yang tergantung mustahil di langit di atas pegunungan." /></figure>
+  <div class="horizon-chapter"><p>06 / Bab berikutnya</p><strong>Yang berikutnya<br>belum ditulis.</strong></div>
+  </div>
 </div>
 
 <section class="contact" id="kontak" aria-labelledby="contact-title">

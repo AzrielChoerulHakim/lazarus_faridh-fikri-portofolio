@@ -85,3 +85,35 @@ test('meaningful scrolling replaces hidden dossiers without hijacking native pag
  for(const detail of ['Review dan penyusunan','Distribusi produk','Memverifikasi kelengkapan','Menyiapkan proses penerbitan SKHPN'])assert.ok(html.includes(detail));
  assert.doesNotMatch(html,/<details\b/i);
 });
+
+
+test('six-act editorial narrative is real markup, not replaced CV evidence',()=>{
+ const advanceCss=fs.readFileSync(path.join(root,'advance.css'),'utf8');
+ const advanceJs=fs.readFileSync(path.join(root,'advance.js'),'utf8');
+ assert.match(html,/href="advance\.css"/);
+ assert.match(html,/src="advance\.js" defer/);
+ for(const fragment of ['narrative-cover','cover-pin','cover-second','narrative-profile','profile-pin','statement-stage','statement-fill','horizon-pin','horizon-chapter']){
+  assert.ok(html.includes(fragment),'missing narrative component '+fragment);
+ }
+ assert.equal((html.match(/class="work-chapter-number"/g)||[]).length,4);
+ assert.match(advanceCss,/\.js-ready \.narrative-cover/);
+ assert.match(advanceCss,/\.statement-fill/);
+ assert.match(advanceCss,/prefers-reduced-motion:reduce/);
+ assert.match(advanceCss,/\.js-ready \.horizon-pin/);
+ assert.match(advanceJs,/requestAnimationFrame/);
+ assert.match(advanceJs,/getBoundingClientRect/);
+ assert.match(advanceJs,/reduced-motion: reduce/);
+ assert.doesNotMatch(advanceJs,/scrollTo\(|preventDefault\(|WebGL|three\.js/i);
+ assert.doesNotThrow(()=>new vm.Script(advanceJs));
+});
+
+test('v3 does not create fictitious artwork, professional claims or new image layers',()=>{
+ const advanceCss=fs.readFileSync(path.join(root,'advance.css'),'utf8');
+ assert.equal((html.match(/<img\b/g)||[]).length,4);
+ assert.equal((html.match(/<figure\b/g)||[]).length,4);
+ assert.doesNotMatch(html,/<canvas\b|<svg\b|<model-viewer\b|<iframe\b/i);
+ assert.doesNotMatch(advanceCss,/background-image\s*:|url\(data:|mix-blend-mode|filter\s*:/i);
+ assert.match(html,/Empat lingkungan kerja/);
+ assert.match(html,/PT Starlead Technology Indonesia/);
+ assert.match(html,/Pengadilan Agama Jakarta Selatan/);
+});

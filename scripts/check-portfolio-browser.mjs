@@ -23,7 +23,7 @@ const server=http.createServer((req,res)=>{
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
 const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true});
-const report={branch:'main',viewports:[],errors:[],paintings:[],knownLimitations:['The hero painting is a 1536x1024 original, but independent art-direction critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
+const report={branch:'experiment/faridh-surrealist-brutalism-v3',viewports:[],errors:[],paintings:[],knownLimitations:['The hero painting is a 1536x1024 original, but independent art-direction critique and physical-device review remain outstanding.','The original CV PDF was not reattached during reconstruction; checked live content against original main branch facts.','Automated geometry and functional checks do not replace human visual art-direction review.']};
 try{
  for(const [width,height] of [[320,900],[390,844],[640,900],[768,1024],[1024,768],[1440,900],[832,384]]){
   const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce',hasTouch:width<=390});
@@ -103,10 +103,45 @@ try{
   report.viewports.push({width,height,overflow:'pass',images:'pass',experience:'pass',menu:'pass',screenshot:'saved'});
   await page.close();
  }
+
+ // Motion-enabled passes: reduced-motion snapshots above cannot validate scroll choreography.
+ report.motionViewports=[];
+ for(const [width,height] of [[390,844],[1440,900]]){
+  const page=await browser.newPage({viewport:{width,height},reducedMotion:'no-preference'});
+  page.on('pageerror',e=>report.errors.push('motion '+width+': '+e.message));
+  page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)report.errors.push('motion '+width+': '+r.status()+' '+r.url())});
+  await page.goto(base+'/',{waitUntil:'load'});
+  await page.evaluate(()=>document.fonts.ready);
+  await page.evaluate(()=>{
+   const el=document.querySelector('.narrative-cover');
+   const top=scrollY+el.getBoundingClientRect().top;
+   const travel=Math.max(0,el.offsetHeight-innerHeight);
+   scrollTo({top:top+travel*.76,behavior:'instant'});
+  });
+  await page.waitForFunction(()=>Number(document.querySelector('.narrative-cover').style.getPropertyValue('--hero-p'))>.65);
+  const heroProgress=await page.locator('.narrative-cover').evaluate(el=>Number(el.style.getPropertyValue('--hero-p')));
+  assert.ok(heroProgress>.65&&heroProgress<=1,'motion hero progression must be bounded');
+  assert.equal(await page.locator('.cover-pin').evaluate(el=>getComputedStyle(el).position),'sticky');
+  await page.screenshot({path:path.join(output,'motion-hero-'+width+'.png')});
+  await page.evaluate(()=>{
+   const el=document.querySelector('.statement-stage');
+   const top=scrollY+el.getBoundingClientRect().top;
+   const travel=Math.max(0,el.offsetHeight-innerHeight);
+   scrollTo({top:top+travel*.68,behavior:'instant'});
+  });
+  await page.waitForFunction(()=>Number(document.querySelector('.statement-stage').style.getPropertyValue('--statement-p'))>.55);
+  const wipe=await page.locator('.statement-stage').evaluate(el=>Number(el.style.getPropertyValue('--statement-p')));
+  assert.ok(wipe>.55&&wipe<=1,'statement wipe must follow native scroll');
+  const dimensions=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
+  assert.ok(dimensions.document<=width+2,'motion horizontal overflow '+width+': '+JSON.stringify(dimensions));
+  await page.screenshot({path:path.join(output,'motion-statement-'+width+'.png')});
+  report.motionViewports.push({width,height,heroProgress,statementProgress:wipe,overflow:'pass'});
+  await page.close();
+ }
  assert.deepEqual(report.errors,[],'unexpected browser or local asset errors');
 }finally{
  report.timestamp=new Date().toISOString();
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  await browser.close();server.close();
 }
-console.log('PASS: Faridh full rebuild at seven viewport sizes; 4 original CV work entries; 4 local images; mobile navigation; interactive experience list.');
+console.log('PASS: Faridh V3 at seven reduced-motion viewports and two motion-enabled viewports; 4 original CV work entries; 4 local images; mobile navigation; interactive experience list.');

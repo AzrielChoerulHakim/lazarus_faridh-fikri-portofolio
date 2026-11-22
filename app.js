@@ -54,6 +54,8 @@
   // Mobile: native horizontal snap turns each real job into a readable chapter.
   const pagesRoot = document.getElementById('work-pages');
   const entries = pagesRoot ? [...pagesRoot.querySelectorAll('.work-page')] : [];
+  // The layout, not viewport width alone, decides whether chapters use horizontal scrolling.
+  const isSnapCarousel = () => Boolean(pagesRoot && mobileViewport.matches && getComputedStyle(pagesRoot).display === 'flex' && getComputedStyle(pagesRoot).overflowX !== 'visible');
   const counter = document.getElementById('work-count');
   const mobileCounter = document.getElementById('work-mobile-count');
   const prev = document.getElementById('work-prev');
@@ -62,7 +64,7 @@
 
   function chooseIndex() {
     if (!entries.length) return 0;
-    if (mobileViewport.matches) {
+    if (isSnapCarousel()) {
       const firstOffset = entries[0].offsetLeft;
       const pos = pagesRoot.scrollLeft + firstOffset;
       let selected = 0, delta = Infinity;
@@ -103,7 +105,7 @@
     if (prev) prev.addEventListener('click',()=>navigateTo(Math.max(0,current-1)));
     if (next) next.addEventListener('click',()=>navigateTo(Math.min(entries.length-1,current+1)));
     pagesRoot.addEventListener('scroll',renderIndex,{passive:true});
-    window.addEventListener('scroll',()=>{if(!mobileViewport.matches)renderIndex();},{passive:true});
+    window.addEventListener('scroll',()=>{if(!isSnapCarousel())renderIndex();},{passive:true});
     window.addEventListener('resize',renderIndex,{passive:true});
     mobileViewport.addEventListener?.('change',renderIndex);
     renderIndex();

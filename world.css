@@ -352,3 +352,8 @@ html {scroll-padding-top:76px;}
 @media(max-width:420px){
  .js-ready .work-heading h2 {font-size:clamp(46px,12.5vw,55px);letter-spacing:-.086em;}
 }
+
+@media(prefers-reduced-motion:reduce) and (max-width:720px){
+ .work-mobile-controls {display:none!important;}
+ .js-ready .work-pages {scroll-snap-type:none!important;}
+}

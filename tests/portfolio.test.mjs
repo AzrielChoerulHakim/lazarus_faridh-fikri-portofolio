@@ -87,33 +87,51 @@ test('meaningful scrolling replaces hidden dossiers without hijacking native pag
 });
 
 
-test('six-act editorial narrative is real markup, not replaced CV evidence',()=>{
- const advanceCss=fs.readFileSync(path.join(root,'advance.css'),'utf8');
+
+test('surrealist-world composition uses exactly one authentic raster per scene',()=>{
+ const worldCss=fs.readFileSync(path.join(root,'world.css'),'utf8');
  const advanceJs=fs.readFileSync(path.join(root,'advance.js'),'utf8');
- assert.match(html,/href="advance\.css"/);
- assert.match(html,/src="advance\.js" defer/);
- for(const fragment of ['narrative-cover','cover-pin','cover-second','narrative-profile','profile-pin','statement-stage','statement-fill','horizon-pin','horizon-chapter']){
-  assert.ok(html.includes(fragment),'missing narrative component '+fragment);
+ assert.match(html,/href="world\\.css"/);
+ assert.equal((html.match(/<img\\b/g)||[]).length,4);
+ assert.equal((html.match(/<figure\\b/g)||[]).length,4);
+ for(const part of ['cover-pin','cover-image','profile-pin','work-world','work-world-painting','work-pages','horizon-pin','horizon-chapter']){
+  assert.ok(html.includes(part),'missing world integration structure '+part);
  }
- assert.equal((html.match(/class="work-chapter-number"/g)||[]).length,4);
- assert.match(advanceCss,/\.js-ready \.narrative-cover/);
- assert.match(advanceCss,/\.statement-fill/);
- assert.match(advanceCss,/prefers-reduced-motion:reduce/);
- assert.match(advanceCss,/\.js-ready \.horizon-pin/);
- assert.match(advanceJs,/requestAnimationFrame/);
- assert.match(advanceJs,/getBoundingClientRect/);
- assert.match(advanceJs,/reduced-motion: reduce/);
- assert.doesNotMatch(advanceJs,/scrollTo\(|preventDefault\(|WebGL|three\.js/i);
+ assert.match(worldCss,/\\.cover-pin::before/);
+ assert.match(worldCss,/\\.js-ready \\.work-world/);
+ assert.match(worldCss,/object-fit:cover/);
+ assert.match(worldCss,/\\.horizon-pin::after/);
+ assert.match(worldCss,/\\.js-ready \\.work-pages/);
+ assert.match(worldCss,/scroll-snap-type:x proximity/);
+ assert.match(worldCss,/prefers-reduced-motion:reduce/);
+ assert.doesNotMatch(worldCss,/background-image\\s*:\\s*url|data:image|mix-blend-mode/i);
+ assert.doesNotMatch(html,/<canvas\\b|<svg\\b|<model-viewer\\b|<iframe\\b|<figcaption\\b/i);
  assert.doesNotThrow(()=>new vm.Script(advanceJs));
+ assert.doesNotMatch(advanceJs,/scrollTo\\(|scrollBy\\(|preventDefault\\(|requestAnimationFrame\\(|WebGL|three\\.js/i);
 });
 
-test('v3 does not create fictitious artwork, professional claims or new image layers',()=>{
- const advanceCss=fs.readFileSync(path.join(root,'advance.css'),'utf8');
- assert.equal((html.match(/<img\b/g)||[]).length,4);
- assert.equal((html.match(/<figure\b/g)||[]).length,4);
- assert.doesNotMatch(html,/<canvas\b|<svg\b|<model-viewer\b|<iframe\b/i);
- assert.doesNotMatch(advanceCss,/background-image\s*:|url\(data:|mix-blend-mode|filter\s*:/i);
- assert.match(html,/Empat lingkungan kerja/);
+test('the implemented Scroll Director mechanism budget is one dominant plus one supporting',()=>{
+ const plan=JSON.parse(fs.readFileSync(path.join(root,'scroll-plan.json'),'utf8'));
+ const js=fs.readFileSync(path.join(root,'advance.js'),'utf8');
+ assert.deepEqual(plan.selections.map(s=>s.systemId),['sticky-evidence-exchange','native-snap-strip']);
+ assert.equal(plan.project.baseline,'semantic-document');
+ assert.equal(plan.evidence.length,3);
+ assert.ok(plan.rejected.some(s=>s.systemId==='depth-parallax-theatre'));
+ assert.ok(plan.rejected.some(s=>s.systemId==='typographic-disclosure'));
+ assert.match(js,/MutationObserver\\(renderChapter\\)/);
+ assert.match(js,/getElementById\\('work-count'\\)/);
+ assert.doesNotMatch(js,/getBoundingClientRect|scrollY|scrollLeft/);
+});
+
+test('every piece of resume evidence remains readable and unauthored artistic claims remain separate',()=>{
+ assert.equal((html.match(/class="work-page"/g)||[]).length,4);
+ assert.equal((html.match(/class="certificate"/g)||[]).length,4);
+ assert.match(html,/TOEFL Prediction — 560/);
  assert.match(html,/PT Starlead Technology Indonesia/);
  assert.match(html,/Pengadilan Agama Jakarta Selatan/);
+ assert.match(html,/BNN Kota Tangerang/);
+ assert.match(html,/mailto:faridhfikri1507@gmail\\.com/);
+ assert.match(html,/https:\\/\\/wa\\.me\\/6285814901816/);
+ assert.doesNotMatch(html,/class="cover-second"|class="statement-fill"|<figcaption\\b|<canvas\\b/i);
+ assert.ok(fs.existsSync(path.join(root,'assets/impasto-procession.webp')));
 });

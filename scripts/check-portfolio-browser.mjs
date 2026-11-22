@@ -65,23 +65,18 @@ try{
   assert.ok(completeContent.some(t=>t.includes('SKHPN')),'last CV item must remain readable');
   const workScene=page.locator('.work-world');
   await workScene.scrollIntoViewIfNeeded();
-  if(width>720){
-    const sticky=await workScene.evaluate(el=>getComputedStyle(el).position);
-    assert.equal(sticky,'sticky','desktop painting must remain with scrolling evidence');
-    await experience.last().scrollIntoViewIfNeeded();
-    const current=await page.locator('#work-count').innerText();
-    assert.equal(current,'4 dari 4','scroll-linked experience index not updated');
-  }else{
-    const track=page.locator('#work-pages');
-    assert.equal(await track.evaluate(el=>getComputedStyle(el).scrollSnapType),'x mandatory');
-    const nextButton=page.locator('#work-next');
-    await nextButton.scrollIntoViewIfNeeded();
-    await nextButton.click();
-    await page.waitForFunction(()=>document.getElementById('work-mobile-count').textContent==='2 dari 4');
-    assert.equal(await page.locator('#work-mobile-count').innerText(),'2 dari 4');
-    await page.locator('#work-prev').click();
-    await page.waitForFunction(()=>document.getElementById('work-mobile-count').textContent==='1 dari 4');
-  }
+  assert.equal(await workScene.evaluate(el=>getComputedStyle(el).position),'relative','reduced motion must unpin career environment');
+  const track=page.locator('#work-pages');
+  assert.equal(await track.evaluate(el=>getComputedStyle(el).display),'block','reduced motion must present normal-flow professional records');
+  await experience.last().scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>document.getElementById('work-count').textContent==='4 dari 4');
+  assert.equal(await page.locator('#work-count').innerText(),'4 dari 4');
+  const sceneImages=await page.evaluate(()=>{
+    const a=document.querySelector('.cover-image img').getBoundingClientRect();
+    const b=document.querySelector('.horizon-transition img').getBoundingClientRect();
+    return {heroWidth:a.width,horizonWidth:b.width};
+  });
+  assert.ok(sceneImages.heroWidth>=width-2&&sceneImages.horizonWidth>=width-2,'world images must be full-bleed '+width+': '+JSON.stringify(sceneImages));
   if(width<=720){
    const menu=page.locator('.menu-button');
    assert.ok(await menu.isVisible());
@@ -104,44 +99,70 @@ try{
   await page.close();
  }
 
- // Motion-enabled passes: reduced-motion snapshots above cannot validate scroll choreography.
+
+ // Real-motion validation of the selected Lazarus S04 + S03 systems.
  report.motionViewports=[];
  for(const [width,height] of [[390,844],[1440,900]]){
-  const page=await browser.newPage({viewport:{width,height},reducedMotion:'no-preference'});
+  const page=await browser.newPage({viewport:{width,height},reducedMotion:'no-preference',hasTouch:width<=390});
   page.on('pageerror',e=>report.errors.push('motion '+width+': '+e.message));
   page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)report.errors.push('motion '+width+': '+r.status()+' '+r.url())});
   await page.goto(base+'/',{waitUntil:'load'});
   await page.evaluate(()=>document.fonts.ready);
-  await page.evaluate(()=>{
-   const el=document.querySelector('.narrative-cover');
-   const top=scrollY+el.getBoundingClientRect().top;
-   const travel=Math.max(0,el.offsetHeight-innerHeight);
-   scrollTo({top:top+travel*.76,behavior:'instant'});
+  const hero=await page.locator('.cover-image img').evaluate(img=>{
+    const rect=img.getBoundingClientRect();
+    return {width:rect.width,objectFit:getComputedStyle(img).objectFit,frame:getComputedStyle(img.closest('.cover-image')).position};
   });
-  await page.waitForFunction(()=>Number(document.querySelector('.narrative-cover').style.getPropertyValue('--hero-p'))>.65);
-  const heroProgress=await page.locator('.narrative-cover').evaluate(el=>Number(el.style.getPropertyValue('--hero-p')));
-  assert.ok(heroProgress>.65&&heroProgress<=1,'motion hero progression must be bounded');
-  assert.equal(await page.locator('.cover-pin').evaluate(el=>getComputedStyle(el).position),'sticky');
-  await page.screenshot({path:path.join(output,'motion-hero-'+width+'.png')});
-  await page.evaluate(()=>{
-   const el=document.querySelector('.statement-stage');
-   const top=scrollY+el.getBoundingClientRect().top;
-   const travel=Math.max(0,el.offsetHeight-innerHeight);
-   scrollTo({top:top+travel*.68,behavior:'instant'});
-  });
-  await page.waitForFunction(()=>Number(document.querySelector('.statement-stage').style.getPropertyValue('--statement-p'))>.55);
-  const wipe=await page.locator('.statement-stage').evaluate(el=>Number(el.style.getPropertyValue('--statement-p')));
-  assert.ok(wipe>.55&&wipe<=1,'statement wipe must follow native scroll');
+  assert.ok(hero.width>=width-2,'immersive opening must use full-width image');
+  assert.equal(hero.objectFit,'cover');
+  assert.equal(hero.frame,'absolute','opening painting must be part of the hero scene');
+  await page.screenshot({path:path.join(output,'world-hero-'+width+'.png')});
+  const workScene=page.locator('.work-world');
+  if(width>720){
+    assert.equal(await workScene.evaluate(el=>getComputedStyle(el).position),'sticky','S04 must pin actual visual context on desktop');
+    await page.locator('.work-page').last().scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>document.querySelector('.work-world').dataset.chapter==='4');
+    assert.equal(await page.locator('#work-count').innerText(),'4 dari 4');
+    await page.locator('.work-page').first().scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>document.querySelector('.work-world').dataset.chapter==='1');
+    assert.equal(await page.locator('#work-count').innerText(),'1 dari 4','reverse scroll restores chapter context');
+  }else{
+    assert.equal(await workScene.evaluate(el=>getComputedStyle(el).position),'relative');
+    const track=page.locator('#work-pages');
+    assert.equal(await track.evaluate(el=>getComputedStyle(el).scrollSnapType),'x proximity');
+    const nextButton=page.locator('#work-next');
+    await nextButton.scrollIntoViewIfNeeded();
+    await nextButton.click();
+    await page.waitForFunction(()=>document.getElementById('work-count').textContent==='2 dari 4');
+    assert.equal(await workScene.getAttribute('data-chapter'),'2');
+    await page.locator('#work-prev').click();
+    await page.waitForFunction(()=>document.getElementById('work-count').textContent==='1 dari 4');
+  }
   const dimensions=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
-  assert.ok(dimensions.document<=width+2,'motion horizontal overflow '+width+': '+JSON.stringify(dimensions));
-  await page.screenshot({path:path.join(output,'motion-statement-'+width+'.png')});
-  report.motionViewports.push({width,height,heroProgress,statementProgress:wipe,overflow:'pass'});
+  assert.ok(dimensions.document<=width+2,'motion overflow '+width+': '+JSON.stringify(dimensions));
+  await page.screenshot({path:path.join(output,'world-work-'+width+'.png')});
+  await page.locator('.horizon-transition').scrollIntoViewIfNeeded();
+  const horizon=await page.locator('.horizon-transition img').evaluate(img=>{
+   const rect=img.getBoundingClientRect();
+   return {width:rect.width,fit:getComputedStyle(img).objectFit};
+  });
+  assert.ok(horizon.width>=width-2&&horizon.fit==='cover','horizon must be immersive and full-width');
+  await page.screenshot({path:path.join(output,'world-horizon-'+width+'.png')});
+  report.motionViewports.push({width,height,hero:hero.objectFit,work:'pass',horizon:horizon.fit,overflow:'pass'});
   await page.close();
  }
+
+ // Progressive enhancement: real documents and contact actions survive disabled JavaScript.
+ const noJs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
+ await noJs.goto(base+'/',{waitUntil:'load'});
+ assert.equal(await noJs.locator('.work-page').count(),4);
+ assert.equal(await noJs.locator('a[href^="mailto:"]').count(),1);
+ assert.equal(await noJs.locator('.cover-image img').count(),1);
+ await noJs.screenshot({path:path.join(output,'world-no-js-390.png'),fullPage:true});
+ await noJs.close();
  assert.deepEqual(report.errors,[],'unexpected browser or local asset errors');
 }finally{
  report.timestamp=new Date().toISOString();
  fs.writeFileSync(path.join(output,'report.json'),JSON.stringify(report,null,2));
  await browser.close();server.close();
 }
-console.log('PASS: Faridh V3 at seven reduced-motion viewports and two motion-enabled viewports; 4 original CV work entries; 4 local images; mobile navigation; interactive experience list.');
+console.log('PASS: Faridh immersive world — seven reduced-motion viewports, two live-scroll viewports, reverse chapter sync, mobile swipe, four original images and no-JS fallback.');

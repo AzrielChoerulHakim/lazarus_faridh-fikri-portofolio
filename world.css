@@ -347,3 +347,8 @@ html {scroll-padding-top:76px;}
  .js-ready .horizon-transition img {height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;}
  .js-ready .horizon-chapter {position:absolute!important;}
 }
+
+/* Optical correction: the full word "Pengalaman" must not overhang 320px. */
+@media(max-width:420px){
+ .js-ready .work-heading h2 {font-size:clamp(46px,12.5vw,55px);letter-spacing:-.086em;}
+}

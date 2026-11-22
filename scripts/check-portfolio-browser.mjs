@@ -42,7 +42,16 @@ try{
   const dimensions=await page.evaluate(()=>({body:document.body.scrollWidth,html:document.documentElement.scrollWidth,viewport:innerWidth}));
   const headingRect=await page.locator('#cover-title').boundingBox();
   assert.ok(headingRect.x>=-1&&headingRect.x+headingRect.width<=width+2,'hero typography runs offscreen at '+width+': '+JSON.stringify(headingRect));
-  assert.ok(dimensions.html<=width+2,'horizontal overflow '+width+': '+JSON.stringify(dimensions));
+  const overflowElements=dimensions.html>width+2 ? await page.evaluate(()=>{
+    const viewport=innerWidth;
+    return [...document.querySelectorAll('body *')].map(el=>{
+      const r=el.getBoundingClientRect();
+      const st=getComputedStyle(el);
+      if(r.right>viewport+2 && st.display!=='none') return {tag:el.tagName.toLowerCase(),cls:String(el.className).slice(0,90),text:el.textContent?.trim().slice(0,28),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)};
+      return null;
+    }).filter(Boolean).slice(0,35);
+  }) : [];
+  assert.ok(dimensions.html<=width+2,'horizontal overflow '+width+': '+JSON.stringify({dimensions,overflowElements}));
   const arts=page.locator('figure img');
   assert.equal(await arts.count(),4);
   for(let i=0;i<4;i++){

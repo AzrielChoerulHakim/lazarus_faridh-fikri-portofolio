@@ -137,7 +137,7 @@ try{
   }else{
     assert.equal(await workScene.evaluate(el=>getComputedStyle(el).position),'relative');
     const track=page.locator('#work-pages');
-    assert.equal(await track.evaluate(el=>getComputedStyle(el).scrollSnapType),'x proximity');
+    assert.match(await track.evaluate(el=>getComputedStyle(el).scrollSnapType),/^x(?: proximity)?$/,'native horizontal proximity snap must be active');
     const nextButton=page.locator('#work-next');
     await nextButton.scrollIntoViewIfNeeded();
     await nextButton.click();

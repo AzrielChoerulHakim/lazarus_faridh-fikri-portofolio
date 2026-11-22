@@ -1,4 +1,4 @@
-name: Faridh Impasto Full Rebuild — QA
+name: Faridh Surrealist World / Scroll Director QA
 
 on:
   push:
@@ -6,10 +6,15 @@ on:
       - main
       - experiment/faridh-impasto-full-rebuild
       - experiment/faridh-sculptural-impasto-v2
+      - experiment/faridh-surrealist-brutalism-v3
     paths:
       - 'index.html'
       - 'styles.css'
+      - 'advance.css'
+      - 'world.css'
+      - 'scroll-plan.json'
       - 'app.js'
+      - 'advance.js'
       - 'assets/**'
       - 'tests/**'
       - 'scripts/**'
@@ -40,7 +45,14 @@ jobs:
       - name: Check Javascript and CV fact invariants
         run: |
           node --check app.js
+          node --check advance.js
           node --test tests/portfolio.test.mjs
+      - name: Verify Lazarus Scroll Director plan against pinned Design OS revision
+        run: |
+          git clone -q --depth 1 https://github.com/AzrielChoerulHakim/lazarus-design-os.git /tmp/lazarus-scroll-director
+          git -C /tmp/lazarus-scroll-director fetch -q --depth 1 origin 39c41d6528bfdf2005e3a29d2d37e8d0a71a493a
+          git -C /tmp/lazarus-scroll-director checkout -q 39c41d6528bfdf2005e3a29d2d37e8d0a71a493a
+          node /tmp/lazarus-scroll-director/scripts/scroll-director.mjs check scroll-plan.json --stage decision
       - name: Install browser
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1

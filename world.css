@@ -1,0 +1,359 @@
+/*
+ FARIDH / IMPASTO WORLD INTEGRATION V4
+ World-first composition: full-bleed complete photographs of paintings, typography inhabits scene.
+ Lazarus Scroll Director S04 sticky-evidence-exchange + S03 native-snap-strip.
+ This file intentionally overrides the former framed exhibition system.
+*/
+:root {
+ --world-navy:#14243a;
+ --world-night:#101b2a;
+ --world-bone:#f4e6d4;
+ --world-sienna:#b96f52;
+ --world-gutter:clamp(20px,5vw,88px);
+}
+html {scroll-padding-top:76px;}
+.header {background:rgba(20,36,58,.94);border-bottom:1px solid rgba(244,230,212,.22);color:var(--world-bone);}
+.header .brand-monogram {color:#e0ac8d;}
+.header .nav a:hover,.header .nav a[aria-current="location"] {color:#f5c6ab;}
+.header .menu-button {border-color:rgba(244,230,212,.46);}
+.header .menu-button span {background:var(--world-bone);}
+.header .mobile-nav {background:var(--world-night);border-color:rgba(244,230,212,.24);}
+.header .mobile-nav a {color:var(--world-bone);border-color:rgba(244,230,212,.18);}
+
+/* Opening: the painting IS the site, never a separate framed plate. */
+.js-ready .narrative-cover,.narrative-cover {height:auto;min-height:0;position:relative;background:var(--world-navy);color:var(--world-bone);}
+.js-ready .cover-pin,.cover-pin {
+ position:relative;top:auto;height:min(980px,calc(100svh - 76px));min-height:680px;
+ overflow:hidden;isolation:isolate;background:var(--world-navy);
+}
+.cover-pin::before {
+ content:"";position:absolute;z-index:2;inset:0;pointer-events:none;
+ background:
+  linear-gradient(90deg,rgba(13,26,42,.85) 0%,rgba(13,26,42,.58) 26%,rgba(13,26,42,.12) 75%),
+  linear-gradient(0deg,#14243a 0%,rgba(20,36,58,.76) 11%,transparent 47%),
+  linear-gradient(180deg,rgba(12,24,39,.48),transparent 31%);
+}
+.js-ready .cover-image,.cover-image {
+ position:absolute;inset:0;z-index:1;padding:0!important;margin:0!important;
+ display:block;width:100%;height:100%;overflow:hidden;
+ transform:none!important;opacity:1!important;background:var(--world-navy);
+}
+.js-ready .cover-image img,.cover-image img {
+ width:100%;height:100%;max-width:none;max-height:none;min-height:0;
+ aspect-ratio:auto;object-fit:cover;object-position:center 46%;
+ background:var(--world-navy);
+}
+.js-ready .cover-type,.cover-type {
+ position:absolute;z-index:3;inset:0;
+ width:100%;height:100%;display:flex;flex-direction:column;
+ padding:clamp(48px,8vh,110px) var(--world-gutter) clamp(45px,7vh,90px);
+ color:var(--world-bone);opacity:1!important;transform:none!important;
+}
+.cover-register {
+ color:rgba(248,236,223,.83);border-color:rgba(249,236,222,.48);
+ font-size:11px;text-shadow:0 2px 17px rgba(13,23,34,.3);
+}
+.cover h1 {
+ max-width:1050px;display:block;position:relative;
+ margin:auto 0 clamp(48px,6.6vh,88px)!important;
+ font-size:clamp(88px,15.8vw,250px)!important;
+ line-height:.79;letter-spacing:-.106em;
+ text-shadow:0 8px 42px rgba(11,19,34,.3);
+}
+.cover h1>em {color:#e2ab8b;margin-left:16%;font-weight:500;}
+.cover-subtitle {
+ margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.76fr) auto;
+ align-items:end;gap:clamp(18px,3vw,60px);
+ border-top:1px solid rgba(248,236,223,.53);padding-top:25px;
+}
+.cover-subtitle>p:first-child {
+ color:#fff2e4;font-size:clamp(24px,3vw,48px);line-height:1.05;
+}
+.cover-subtitle>p:nth-child(2) {
+ font-size:clamp(12px,1.14vw,16px);line-height:1.55;max-width:43ch;
+ color:#f1e4d7;
+}
+.cover-cta {
+ color:#ffe9d6;border-bottom:2px solid #f4c9ad;min-height:41px;
+ font:600 11px/1.4 var(--mono);letter-spacing:.05em;
+}
+.cover-cta:hover {color:#fff;}
+.js-ready .cover-second,.cover-second,.js-ready .cover-progress,.cover-progress {display:none!important;}
+.cover-pin::after {
+ content:"";position:absolute;z-index:2;left:0;right:0;bottom:0;height:1px;
+ background:rgba(248,236,223,.17);
+}
+
+/* Natural continuation: no gallery frame or animated reading obstruction. */
+.js-ready .narrative-profile,.narrative-profile {height:auto;min-height:0;overflow:visible;background:var(--world-navy);}
+.js-ready .profile-pin,.profile-pin {
+ position:relative;top:auto;height:auto;min-height:0;overflow:visible;
+ padding:clamp(100px,11vw,190px) var(--world-gutter) clamp(90px,12vw,185px);
+ background:var(--world-navy);
+}
+.narrative-profile .profile-heading {
+ grid-template-columns:minmax(0,1.2fr) minmax(260px,.55fr);
+ padding:clamp(36px,5vw,70px) 0 clamp(58px,7vw,120px);
+}
+.narrative-profile .profile-heading h2 {font-size:clamp(71px,9vw,155px);line-height:.9;}
+.narrative-profile .profile-heading p {max-width:36ch;font-size:clamp(16px,1.4vw,21px);line-height:1.6;}
+.narrative-profile .profile-body {grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);gap:clamp(40px,7vw,120px);}
+.narrative-profile .profile-image,.narrative-profile .profile-dossier {
+ transform:none!important;opacity:1!important;
+}
+.narrative-profile .profile-image figure {height:auto;max-width:560px;aspect-ratio:4/4.6;}
+.narrative-profile .profile-image img {height:100%;object-fit:cover;}
+.narrative-profile .profile-dossier>p {font-size:clamp(15px,1.25vw,19px);}
+.profile-rail {margin-top:clamp(50px,7vw,115px);}
+
+/* Core narrative S04: one authentic painting forms a persistent full-bleed world
+ while four factual career passages inhabit that same continuous visual plane. */
+.js-ready .work {background:var(--world-night);color:var(--world-bone);padding:0 var(--world-gutter) clamp(75px,9vw,150px);}
+.js-ready .work-heading {
+ display:grid;grid-template-columns:1.3fr minmax(220px,.5fr);
+ padding:clamp(100px,11vw,185px) 0 clamp(54px,7vw,112px);
+ gap:clamp(40px,7vw,125px);
+}
+.js-ready .work-heading h2 {color:var(--world-bone);font-size:clamp(72px,10.5vw,175px);}
+.js-ready .work-heading h2 em {color:#daa082;}
+.js-ready .work-heading>p {color:#e5d6c6;border-color:#be8265;align-self:end;}
+.js-ready .work-story {display:block;position:relative;isolation:isolate;}
+.js-ready .work-world {
+ position:sticky;z-index:1;top:0;
+ width:calc(100% + 2 * var(--world-gutter));height:100svh;min-height:0;
+ margin-left:calc(-1 * var(--world-gutter));margin-right:0;
+ display:block;overflow:hidden;border:0;background:var(--world-navy);
+}
+.js-ready .work-world-painting {position:absolute;z-index:0;inset:0;width:100%;height:100%;margin:0;padding:0;overflow:hidden;}
+.js-ready .work-world-painting img {
+ width:100%;height:100%;max-height:none;aspect-ratio:auto;
+ object-fit:cover;object-position:34% center;
+}
+.js-ready .work-world::after {
+ content:"";position:absolute;z-index:1;inset:0;pointer-events:none;
+ background:
+ linear-gradient(90deg,rgba(13,27,45,.05) 0%,rgba(13,27,45,.15) 37%,rgba(13,27,45,.78) 61%,rgba(13,27,45,.93) 100%),
+ linear-gradient(0deg,rgba(18,33,51,.76),transparent 20%,transparent 72%,rgba(18,33,51,.3));
+}
+.js-ready .work-world-progress {
+ position:absolute;z-index:3;left:var(--world-gutter);right:auto;bottom:clamp(30px,5vh,66px);
+ width:min(360px,35vw);
+ border-top:1px solid rgba(251,234,220,.55);padding:18px 0;
+ background:transparent;color:var(--world-bone);font:500 11px var(--mono);
+}
+.js-ready .work-world-progress output {color:#f6d0b5;white-space:nowrap;}
+.js-ready .work-world-annotation {
+ position:absolute;z-index:3;left:var(--world-gutter);top:clamp(90px,11vh,130px);
+ padding:0;max-width:30ch;color:rgba(248,227,211,.85);
+ text-transform:uppercase;font:400 10px/1.55 var(--mono);letter-spacing:.09em;
+}
+.js-ready .work-pages {
+ position:relative;z-index:2;display:block;
+ width:min(62%,850px);margin:-100svh 0 0 auto;
+ padding:4svh 0 8svh clamp(30px,4vw,78px);
+ border:0;background:transparent;overflow:visible;
+}
+.js-ready .work-page {
+ color:#f8ebdc;background:transparent;
+ padding:clamp(58px,7vh,95px) 0;
+ min-height:clamp(500px,77svh,900px);
+ border-top:0;border-bottom:1px solid rgba(248,228,208,.38);
+ scroll-margin-top:74px;
+}
+.js-ready .work-page-meta {color:#ddab89;}
+.js-ready .work-chapter-number {
+ font:500 clamp(100px,13vw,210px)/.78 var(--display);
+ margin:0 0 clamp(25px,4vh,55px);color:rgba(239,207,181,.36);
+}
+.js-ready .work-page h3 {
+ color:#f8ebdc;font-size:clamp(48px,5.9vw,105px);max-width:13ch;
+ line-height:.96;letter-spacing:-.066em;
+}
+.js-ready .work-page[data-active="true"] h3 {color:#f7c8ab;transform:translateX(7px);}
+.js-ready .work-page[data-active="true"] .work-chapter-number {color:#ddab89;}
+.js-ready .work-company {color:#dec4ad;}
+.js-ready .work-page ul {color:#f2e8db;max-width:55ch;font-size:clamp(14px,1.16vw,18px);line-height:1.78;}
+.js-ready .work-page li::marker {color:#ebb394;}
+.js-ready .work-page[data-active="true"] {border-bottom-color:#eab393;}
+/* No synthetic change to the painting itself: meaning changes with the factual chapter. */
+
+/* The former third scroll pattern (full-screen type scrub) is now a static
+ editorial punctuation, avoiding stacked attention-demanding mechanics. */
+.js-ready .statement-stage,.statement-stage {height:auto;min-height:0;background:#a65f46;}
+.js-ready .statement-pin,.statement-pin {
+ position:relative;top:auto;height:auto;min-height:min(82svh,800px);
+ padding:clamp(90px,12vw,165px) var(--world-gutter);
+}
+.statement-base {color:#fae9d7;}
+.statement-fill {display:none!important;}
+.statement-pair {margin:clamp(85px,9vw,135px) 0;}
+.statement-text {font-size:clamp(58px,9vw,148px);}
+
+/* Coda: the horizon is a room, not a screenshot in a colored border. */
+.js-ready .horizon-transition,.horizon-transition {
+ position:relative;height:auto;min-height:0;padding:0!important;background:var(--world-navy);overflow:hidden;
+}
+.js-ready .horizon-pin,.horizon-pin {
+ position:relative;top:auto;height:min(940px,100svh);min-height:610px;
+ padding:0!important;display:block;overflow:hidden;background:var(--world-navy);
+}
+.js-ready .horizon-transition figure,.horizon-transition figure {
+ position:absolute;inset:0;z-index:0;display:block;overflow:hidden;
+ transform:none!important;opacity:1!important;margin:0;padding:0;
+}
+.js-ready .horizon-transition img,.horizon-transition img {
+ width:100%;height:100%;max-height:none;object-fit:cover;object-position:center 48%;
+ aspect-ratio:auto;
+}
+.horizon-pin::after {
+ content:"";position:absolute;z-index:1;inset:0;pointer-events:none;
+ background:linear-gradient(0deg,rgba(15,29,46,.9) 0%,rgba(15,29,46,.4) 36%,transparent 73%),
+ linear-gradient(90deg,rgba(15,29,46,.24),transparent 65%);
+}
+.js-ready .horizon-chapter,.horizon-chapter {
+ position:absolute;z-index:2;left:var(--world-gutter);right:var(--world-gutter);
+ bottom:clamp(40px,7vh,90px);margin:0;padding-top:21px;
+ border-top:1px solid rgba(255,233,214,.55);color:var(--world-bone);
+}
+.horizon-chapter strong {
+ font:450 clamp(68px,10.3vw,170px)/.89 var(--display);
+ letter-spacing:-.08em;text-shadow:0 6px 31px rgba(11,23,40,.32);
+}
+.horizon-chapter p {font-size:10px;}
+.contact {background:#14243a;}
+
+/* Tablet: retain the same image as world rather than a bordered side illustration. */
+@media(max-width:1050px){
+ .cover h1 {font-size:clamp(78px,15vw,157px)!important;}
+ .cover-subtitle {grid-template-columns:1fr 1fr;}
+ .cover-cta {grid-column:2;justify-self:start;}
+ .js-ready .work-world-progress {width:min(280px,29vw);}
+ .js-ready .work-pages {width:65%;padding-left:30px;}
+ .js-ready .work-page h3 {font-size:clamp(41px,5.1vw,68px);}
+ .js-ready .work-page ul {font-size:14px;}
+}
+/* Native Snap S03 stays in use on mobile; the painting remains an atmospheric
+ full-width environment and cards are translucent information sheets inside it. */
+@media(max-width:720px){
+ html {scroll-padding-top:69px;}
+ .js-ready .cover-pin,.cover-pin {height:auto;min-height:max(775px,calc(100svh - 69px));}
+ .js-ready .cover-type,.cover-type {padding:clamp(90px,13vh,125px) 20px 49px;}
+ .cover-register {font-size:9px;}
+ .cover h1 {
+   font-size:clamp(69px,15.2vw,108px)!important;
+   margin:auto 0 clamp(50px,8vh,92px)!important;
+   letter-spacing:-.085em;
+ }
+ .cover h1>em {margin-left:5%;}
+ .cover-subtitle {display:block;padding-top:20px;}
+ .cover-subtitle>p:first-child {font-size:clamp(28px,7vw,44px);margin:0 0 20px;}
+ .cover-subtitle>p:nth-child(2) {font-size:14px;max-width:37ch;}
+ .cover-cta {margin-top:22px;max-width:220px;}
+ .cover-pin::before {
+   background:linear-gradient(0deg,#14243a 0%,rgba(13,27,45,.88) 28%,rgba(13,27,45,.27) 72%,rgba(13,27,45,.45)),
+   linear-gradient(90deg,rgba(13,27,45,.34),transparent 80%);
+ }
+ .js-ready .cover-image img,.cover-image img {object-position:54% center;}
+ .js-ready .profile-pin,.profile-pin {padding:90px 20px 100px;}
+ .narrative-profile .profile-heading {display:block;padding:40px 0 45px;}
+ .narrative-profile .profile-heading h2 {font-size:clamp(60px,12vw,92px);}
+ .narrative-profile .profile-heading p {font-size:16px;margin-top:20px;}
+ .narrative-profile .profile-body {grid-template-columns:1fr;gap:35px;}
+ .narrative-profile .profile-image figure {max-width:620px;aspect-ratio:4/4.6;}
+ .profile-rail {margin-top:52px;}
+ .js-ready .work {padding:0 0 90px;}
+ .js-ready .work-heading {display:block;padding:90px 20px 60px;}
+ .js-ready .work-heading h2 {font-size:clamp(64px,12vw,89px);}
+ .js-ready .work-heading>p {max-width:55ch;margin:27px 0 0;}
+ .js-ready .work-world {
+   position:relative;top:auto;width:100%;height:clamp(390px,60svh,620px);min-height:0;
+   margin:0;overflow:hidden;
+ }
+ .js-ready .work-world::after {
+   background:linear-gradient(0deg,rgba(13,27,45,.9),rgba(13,27,45,.1) 55%,rgba(13,27,45,.24));
+ }
+ .js-ready .work-world-painting img {object-position:43% center;}
+ .js-ready .work-world-progress {
+   left:20px;right:20px;bottom:50px;width:auto;
+   padding:15px 0;font-size:11px;
+ }
+ .js-ready .work-world-annotation {left:20px;top:34px;font-size:9px;}
+ .js-ready .work-pages {
+   display:flex;gap:0;position:relative;z-index:2;
+   width:100%;margin:-42px 0 0;
+   padding:0 20px 25px;overflow-x:auto;overflow-y:hidden;
+   scroll-snap-type:x proximity;scroll-padding-inline:20px;
+   overscroll-behavior-inline:contain;scrollbar-width:thin;
+ }
+ .js-ready .work-page {
+   flex:0 0 min(88vw,520px);align-self:stretch;min-height:0;
+   margin:0 12px 0 0;padding:32px 26px 36px;
+   background:rgba(16,27,42,.96);border:1px solid rgba(242,220,199,.35);
+   scroll-snap-align:start;
+ }
+ .js-ready .work-chapter-number {font-size:86px;margin-bottom:30px;}
+ .js-ready .work-page h3 {font-size:clamp(37px,8vw,54px);max-width:18ch;}
+ .js-ready .work-page ul {font-size:14px;line-height:1.68;}
+ .js-ready .work-page[data-active="true"] h3 {transform:none;}
+ .work-mobile-controls {display:flex;margin:20px 20px 0;}
+ .work-mobile-controls button {color:#f4e6d4;border-color:#bd9d86;min-height:44px;}
+ .work-mobile-controls>span {color:#f4e6d4;}
+ .js-ready .statement-pin,.statement-pin {min-height:0;padding:90px 20px;}
+ .statement-pair {margin:75px 0;}
+ .statement-text {font-size:clamp(50px,10vw,76px);}
+ .js-ready .horizon-pin,.horizon-pin {height:min(790px,92svh);min-height:590px;}
+ .js-ready .horizon-transition img,.horizon-transition img {object-position:61% center;}
+ .js-ready .horizon-chapter,.horizon-chapter {left:20px;right:20px;bottom:47px;display:block;}
+ .horizon-chapter strong {display:block;font-size:clamp(55px,11vw,88px);margin-top:15px;}
+ .contact {padding-top:90px;}
+}
+@media(max-width:420px){
+ .cover h1 {font-size:clamp(66px,18vw,78px)!important;}
+ .cover h1>em {margin-left:0;}
+ .cover-subtitle>p:first-child {font-size:29px;}
+ .cover-subtitle>p:nth-child(2) {font-size:13px;}
+ .js-ready .work-page {flex-basis:calc(100vw - 45px);padding:28px 21px;}
+ .js-ready .work-page h3 {font-size:clamp(35px,8.8vw,45px);}
+ .js-ready .work-page ul {font-size:13px;}
+ .statement-text {font-size:clamp(43px,10.4vw,53px);}
+ .horizon-chapter strong {font-size:clamp(50px,12vw,66px);}
+}
+@media(max-height:650px) and (min-width:721px){
+ .js-ready .cover-pin,.cover-pin {height:auto;min-height:590px;}
+ .cover h1 {font-size:clamp(76px,12vw,130px)!important;margin:35px 0!important;}
+ .js-ready .work-world {height:100svh;}
+ .js-ready .work-pages {margin-top:-100svh;}
+ .js-ready .work-page {min-height:560px;}
+ .js-ready .horizon-pin,.horizon-pin {height:auto;min-height:590px;}
+}
+/* Reduced motion: the world remains full-bleed, but no long pinned visual voyage. */
+@media(prefers-reduced-motion:reduce){
+ .js-ready .narrative-cover,.js-ready .narrative-profile,.js-ready .horizon-transition,.js-ready .statement-stage {height:auto!important;}
+ .js-ready .cover-pin,.js-ready .profile-pin,.js-ready .horizon-pin,.js-ready .statement-pin {position:relative!important;top:auto!important;}
+ .js-ready .cover-type {position:absolute!important;opacity:1!important;transform:none!important;}
+ .js-ready .cover-image {position:absolute!important;inset:0!important;height:100%!important;}
+ .js-ready .cover-image img {height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;}
+ .js-ready .work-world {position:relative!important;top:auto!important;height:clamp(420px,65svh,750px);}
+ .js-ready .work-pages {
+   position:relative!important;display:block!important;
+   width:100%!important;margin:0!important;padding:0!important;
+   overflow:visible!important;
+ }
+ .js-ready .work-page {width:100%!important;max-width:900px;min-height:0!important;flex:auto!important;
+   padding:clamp(35px,5vw,65px) var(--world-gutter)!important;margin:0!important;
+   border-bottom:1px solid rgba(248,228,208,.3);background:var(--world-night)!important;}
+ .js-ready .statement-fill {display:none!important;}
+ .js-ready .horizon-transition figure {position:absolute!important;inset:0!important;}
+ .js-ready .horizon-transition img {height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;}
+ .js-ready .horizon-chapter {position:absolute!important;}
+}
+
+/* Optical correction: the full word "Pengalaman" must not overhang 320px. */
+@media(max-width:420px){
+ .js-ready .work-heading h2 {font-size:clamp(46px,12.5vw,55px);letter-spacing:-.086em;}
+}
+
+@media(prefers-reduced-motion:reduce) and (max-width:720px){
+ .work-mobile-controls {display:none!important;}
+ .js-ready .work-pages {scroll-snap-type:none!important;}
+}

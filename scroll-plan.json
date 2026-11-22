@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "name": "Faridh Fikri — Surrealist World Portfolio",
+    "audience": "Recruiters and professional contacts evaluating Faridh's documented legal, HRGA, administrative and sales experience.",
+    "readerJobs": [
+      "read-evidence",
+      "compare-artifacts",
+      "explore-portfolio",
+      "scan-chapters"
+    ],
+    "constraints": "Keep complete four-role CV facts, real portrait, actual contact details, and three authored impasto paintings unchanged. No invented professional projects. Native scrolling, sensible mobile and reduced-motion layouts.",
+    "baseline": "semantic-document"
+  },
+  "evidence": [
+    {
+      "id": "cv-work-four",
+      "claim": "Four distinct real professional roles and organizations, their dates and tasks, recorded in the existing verified-content ledger and four HTML articles.",
+      "source": "docs/CONTENT_INTEGRITY.md; index.html#pengalaman",
+      "status": "verified",
+      "tags": [
+        "verified-evidence",
+        "verified-sections"
+      ]
+    },
+    {
+      "id": "media-impasto",
+      "claim": "The three full-resolution impasto artworks were created within the Lazarus project, preserved in this repo, and clearly presented as metaphoric editorial images, not Faridh's employment evidence.",
+      "source": "assets/impasto-dissolution.webp; assets/impasto-procession.webp; assets/impasto-horizon.webp; docs/CONTENT_INTEGRITY.md",
+      "status": "verified",
+      "tags": [
+        "licensed-media",
+        "verified-sections"
+      ]
+    },
+    {
+      "id": "media-portrait",
+      "claim": "The original Faridh portrait is retained unmodified and the facts and contact channels are unaltered.",
+      "source": "assets/faridh-portrait.webp; docs/CONTENT_INTEGRITY.md",
+      "status": "verified",
+      "tags": [
+        "licensed-media",
+        "verified-evidence"
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "systemId": "sticky-evidence-exchange",
+      "why": "The career narrative comprises four verified CV-backed settings. A single environmental impasto painting provides consistent art direction while reading evidence changes by chapter; visual emphasis tracks the active real role.",
+      "readerBenefit": "Readers can inspect four different actual responsibilities while retaining a stable chapter context, without flipping through decorative case-study cards.",
+      "implementation": "CSS sticky full-bleed scene; four semantic work articles remain in ordinary scroll order. Existing app.js owns the active chapter; advance.js reflects that one canonical value to presentation data attributes.",
+      "stateSource": "Actual active work article derived by app.js chooseIndex() and exposed through #work-count (1..4); no parallel progress clocks.",
+      "sourceBasis": "docs-reviewed",
+      "sourceDescription": "",
+      "evidenceIds": [
+        "cv-work-four",
+        "media-impasto"
+      ],
+      "nonTransferable": [
+        "Reference demo's colors, cards and labels",
+        "Reference demo's exact viewport rhythm and layout"
+      ],
+      "rejectionConsidered": "Depth-parallax layers and continuous scrub would turn a complete painting into fabricated movable fragments and distract from the CV facts.",
+      "fallback": {
+        "noJs": "All four work articles and the full painting remain in source order, without script-dependent access or empty pinned space.",
+        "reducedMotion": "Full painting becomes an ordinary finite-height visual scene preceding all four vertically stacked career entries.",
+        "mobile": "At 320 and 390 px the full-width scene precedes the directly accessible native swipeable four-entry chapter strip, with real next and previous controls."
+      }
+    },
+    {
+      "systemId": "native-snap-strip",
+      "why": "At small widths, the four real career entries form a finite directly navigable group which must not become a forced vertical-to-horizontal scrolling animation.",
+      "readerBenefit": "Readers can directly swipe four role chapters or use previous and next buttons while each role keeps its original complete job description.",
+      "implementation": "Native overflow-x:auto and scroll-snap-type:x proximity; existing real previous/next buttons navigate chapter offsets; no custom pointer dragging.",
+      "stateSource": "Native #work-pages scrollLeft and article offsetLeft, read by the same canonical app.js chooseIndex() used by sticky evidence presentation.",
+      "sourceBasis": "docs-reviewed",
+      "sourceDescription": "",
+      "evidenceIds": [
+        "cv-work-four",
+        "media-impasto"
+      ],
+      "nonTransferable": [
+        "Source demo's colors and UI chrome",
+        "Source demo's figure sizing and layout"
+      ],
+      "rejectionConsidered": "A pinned horizontal theatre would trap long CV copy and break touch/keyboard access; a long single column loses direct chapter navigation on mobile.",
+      "fallback": {
+        "noJs": "The horizontal overflow container and every career article remain swipe/keyboard scrollable even without JavaScript; no buttons required to expose information.",
+        "reducedMotion": "Motion-free vertical stacking of all four articles takes precedence over mandatory swipe; the source document remains complete.",
+        "mobile": "Direct touch swipe plus buttons and native proximity snapping; each factual chapter is fully legible at 320 and 390 CSS px."
+      }
+    }
+  ],
+  "noScrollReason": "",
+  "rejected": [
+    {
+      "systemId": "depth-parallax-theatre",
+      "reason": "Three completed paintings have no independently sourced image depth layers; separating visual objects would fabricate a spatial structure and distract from the professional evidence."
+    },
+    {
+      "systemId": "typographic-disclosure",
+      "reason": "The former full-screen text wipe was another dominant interaction. It adds spectacle without helping compare four CV roles, so the statement is now static and legible."
+    },
+    {
+      "systemId": "spatial-zoom-transit",
+      "reason": "An image zoom does not communicate a verified detail and can introduce crop distortion and vestibular discomfort."
+    }
+  ],
+  "qa": {
+    "reviewedCommit": "",
+    "environment": "GitHub Actions Playwright Chromium at seven responsive widths; release gate awaits manual visual and device signoff.",
+    "checks": []
+  }
+}

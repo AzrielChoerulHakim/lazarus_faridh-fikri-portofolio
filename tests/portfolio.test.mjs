@@ -85,3 +85,53 @@ test('meaningful scrolling replaces hidden dossiers without hijacking native pag
  for(const detail of ['Review dan penyusunan','Distribusi produk','Memverifikasi kelengkapan','Menyiapkan proses penerbitan SKHPN'])assert.ok(html.includes(detail));
  assert.doesNotMatch(html,/<details\b/i);
 });
+
+
+
+test('surrealist-world composition uses exactly one authentic raster per scene',()=>{
+ const worldCss=fs.readFileSync(path.join(root,'world.css'),'utf8');
+ const advanceJs=fs.readFileSync(path.join(root,'advance.js'),'utf8');
+ assert.match(html,/href="world\.css"/);
+ assert.equal((html.match(/<img\b/g)||[]).length,4);
+ assert.equal((html.match(/<figure\b/g)||[]).length,4);
+ for(const part of ['cover-pin','cover-image','profile-pin','work-world','work-world-painting','work-pages','horizon-pin','horizon-chapter']){
+  assert.ok(html.includes(part),'missing world integration structure '+part);
+ }
+ assert.match(worldCss,/\.cover-pin::before/);
+ assert.match(worldCss,/\.js-ready \.work-world/);
+ assert.match(worldCss,/object-fit:cover/);
+ assert.match(worldCss,/\.horizon-pin::after/);
+ assert.match(worldCss,/\.js-ready \.work-pages/);
+ assert.match(worldCss,/scroll-snap-type:x proximity/);
+ assert.match(worldCss,/prefers-reduced-motion:reduce/);
+ assert.doesNotMatch(worldCss,/background-image\s*:\s*url|data:image|mix-blend-mode/i);
+ assert.doesNotMatch(html,/<canvas\b|<svg\b|<model-viewer\b|<iframe\b|<figcaption\b/i);
+ assert.doesNotThrow(()=>new vm.Script(advanceJs));
+ assert.doesNotMatch(advanceJs,/scrollTo\(|scrollBy\(|preventDefault\(|requestAnimationFrame\(|WebGL|three\.js/i);
+});
+
+test('the implemented Scroll Director mechanism budget is one dominant plus one supporting',()=>{
+ const plan=JSON.parse(fs.readFileSync(path.join(root,'scroll-plan.json'),'utf8'));
+ const js=fs.readFileSync(path.join(root,'advance.js'),'utf8');
+ assert.deepEqual(plan.selections.map(s=>s.systemId),['sticky-evidence-exchange','native-snap-strip']);
+ assert.equal(plan.project.baseline,'semantic-document');
+ assert.equal(plan.evidence.length,3);
+ assert.ok(plan.rejected.some(s=>s.systemId==='depth-parallax-theatre'));
+ assert.ok(plan.rejected.some(s=>s.systemId==='typographic-disclosure'));
+ assert.match(js,/MutationObserver\(renderChapter\)/);
+ assert.match(js,/getElementById\('work-count'\)/);
+ assert.doesNotMatch(js,/getBoundingClientRect|scrollY|scrollLeft/);
+});
+
+test('every piece of resume evidence remains readable and unauthored artistic claims remain separate',()=>{
+ assert.equal((html.match(/class="work-page"/g)||[]).length,4);
+ assert.equal((html.match(/class="certificate"/g)||[]).length,4);
+ assert.match(html,/TOEFL Prediction — 560/);
+ assert.match(html,/PT Starlead Technology Indonesia/);
+ assert.match(html,/Pengadilan Agama Jakarta Selatan/);
+ assert.match(html,/BNN Kota Tangerang/);
+ assert.match(html,/mailto:faridhfikri1507@gmail\.com/);
+ assert.match(html,/https:\/\/wa\.me\/6285814901816/);
+ assert.doesNotMatch(html,/class="cover-second"|class="statement-fill"|<figcaption\b|<canvas\b/i);
+ assert.ok(fs.existsSync(path.join(root,'assets/impasto-procession.webp')));
+});
